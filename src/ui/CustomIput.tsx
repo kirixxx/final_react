@@ -8,7 +8,8 @@ interface CustomInputProps {
     id?: string;
     svgId?: string;
     svgWidth?: number,
-    svgHeight?: number
+    svgHeight?: number,
+    placeHolder?: string, 
 }
 
 export const CustomInput: FC<CustomInputProps> = ({
@@ -17,15 +18,16 @@ export const CustomInput: FC<CustomInputProps> = ({
     ariaLabel,
     id,
     svgId,
-    svgWidth,
-    svgHeight
+    placeHolder,
+    svgWidth=24,
+    svgHeight=24
 }) => {
     return (
         <div className="custom-input">
             <svg className="custom-input__icon" width={svgWidth} height={svgHeight} aria-hidden="true">
                 <use xlinkHref={`assets/sprive.svg#${svgId}`}></use>
             </svg>
-            <Input className="custom-input__field" type={type} name={name} id={id} ariaLabel={ariaLabel} />
+            <Input className="custom-input__field" type={type} name={name} id={id} placeHolder={placeHolder} ariaLabel={ariaLabel} />
         </div>
     )
 }

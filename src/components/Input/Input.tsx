@@ -6,6 +6,7 @@ interface InputProps {
     id?: string;
     className: string;
     type?: 'radio' | 'text' | 'number' | 'email';
+    placeHolder?: string;
 }
 
 export const Input: FC<InputProps> = ({
@@ -14,6 +15,7 @@ export const Input: FC<InputProps> = ({
     className,
     type,
     ariaLabel,
+    placeHolder
 }) => {
     return (
         <input 
@@ -21,6 +23,7 @@ export const Input: FC<InputProps> = ({
             id={id}
             className={className}
             name={name}
+            placeholder={placeHolder}
             aria-label={ariaLabel}
         />        
 )
