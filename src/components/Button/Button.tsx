@@ -11,7 +11,7 @@ interface ButtonProps {
 
 }
 
-export const Button:FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
     isDisabled,
     isLoading,
     kind,
@@ -22,10 +22,10 @@ export const Button:FC<ButtonProps> = ({
 }) => {
     return (
         <button
-        disabled={isDisabled}
-        className={className}
-        data-kind={kind}
-        type={type}>
+            disabled={isDisabled}
+            className={className}
+            data-kind={kind}
+            type={type}>
             {isLoading ? <Loader /> : children}
         </button>
     )

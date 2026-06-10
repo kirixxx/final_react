@@ -21,6 +21,9 @@ $color-pirate-gold: #A59400;
 $color-gray: #777777;
 $color-thunderbird: #C82020;
 
+$bg-main: linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%),
+linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%);
+
 /* Shadows */
 /* ------------------------------------ */
 $shadow-home-card: 0px 0px 80px 0px;

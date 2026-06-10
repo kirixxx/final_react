@@ -5,7 +5,7 @@ interface InputProps {
     ariaLabel?: string;
     id?: string;
     className: string;
-    type?: 'radio' | 'text' | 'number' | 'email';
+    type?: 'radio' | 'text' | 'number' | 'email' | 'search';
     placeHolder?: string;
 }
 
