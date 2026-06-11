@@ -427,6 +427,7 @@ input[type=search]::-webkit-search-results-decoration {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
 }
 
 .header {
@@ -492,4 +493,15 @@ input[type=search]::-webkit-search-results-decoration {
 }
 .footer__socials-icon {
   color: rgba(255, 255, 255, 0.8);
+}
+
+.login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.login__wrapper {
+  width: 100%;
+  background-color: #FFFFFF;
 }/*# sourceMappingURL=styles.css.map */
