@@ -8,8 +8,8 @@ function App() {
       <Route path="/" element={<Layout />}>
         {/* <Route index element={<MainPage />} />
         <Route path="genres" element={<GenresPage />} />
-        <Route path="genres/:genreId" element={<GenrePage />} />
-        <Route path="movie/:movieId" element={<MoviePage />} />
+        <Route path="genres/:genreId" element={<GenresPage />} />
+        <Route path="movie/:movieId" element={<MoviesPage />} />
         <Route path="profile/:userId" element={<ProfilePage />} /> */}
       </Route>
     </Routes>

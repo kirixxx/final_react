@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import sprite from '../../assets/images/sprite.svg'
 
 interface ISvgProps {
     width?: number;
@@ -14,7 +15,7 @@ export const Svg: FC<ISvgProps> = ({
 }) => {
     return (
         <svg className={className} width={width} height={height} aria-hidden="true">
-            <use xlinkHref={`assets/sprive.svg#${iconId}`}></use>
+            <use xlinkHref={`${sprite}#${iconId}`}></use>
         </svg>
     )
 }

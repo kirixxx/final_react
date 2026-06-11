@@ -1,14 +1,12 @@
-import type { FC, ReactNode } from "react"
+import type { ButtonHTMLAttributes, FC, ReactNode } from "react"
 import { Loader } from "../Loader/Loader"
 
-interface ButtonProps {
-    className: string,
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode,
     isLoading?: boolean,
     isDisabled?: boolean,
     kind?: 'primary' | 'secondary',
     type?: 'button' | 'reset' | 'submit',
-
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -18,6 +16,7 @@ export const Button: FC<ButtonProps> = ({
     className,
     children,
     type,
+    onClick,
     ...props
 }) => {
     return (
@@ -25,7 +24,8 @@ export const Button: FC<ButtonProps> = ({
             disabled={isDisabled}
             className={className}
             data-kind={kind}
-            type={type}>
+            type={type}
+            onClick={onClick}>
             {isLoading ? <Loader /> : children}
         </button>
     )

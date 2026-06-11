@@ -9,6 +9,7 @@
         flex-direction: row;
         gap: 80px;
         align-items: center;
+        padding: 24px 80px;
     }
 
     &__box {
@@ -24,6 +25,12 @@
         display: flex;
         gap: 40px;
         flex-direction: row;
+        align-items: center;
+    }
+
+    &__nav-link {
+        color: $color-white;
+        text-decoration: none;
     }
 
     &__btn {

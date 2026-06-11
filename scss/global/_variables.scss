@@ -5,7 +5,8 @@ $ff-main: "Noto Sans", "Arial", sans-serif;
 /* Colors */
 /* ------------------------------------ */
 $color-white: #FFFFFF;
-$color-white-2: rgba(255, 255, 255, 0.7);
+$color-white-opacity-7: rgba(255, 255, 255, 0.7);
+$color-white-opacity-8: rgba(255, 255, 255, 0.8);
 $color-black: #000000;
 $color-black-2: rgba(0, 0, 0, 0.4);
 $color-forest-green: #308E21;
@@ -21,8 +22,8 @@ $color-pirate-gold: #A59400;
 $color-gray: #777777;
 $color-thunderbird: #C82020;
 
-$bg-main: linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%),
-linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%);
+$bg-main: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%),
+    linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
 
 /* Shadows */
 /* ------------------------------------ */

@@ -1,9 +1,13 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import { Button } from "../Button/Button";
 import { Link } from "react-router-dom";
 import { CustomSearch } from "../CustomSearch/CustomSearch";
+import { useDispatch } from "react-redux";
+import { openAuthModal } from "../../features/authModal/authModalSlice";
 
 export const Header: FC = () => {
+    const dispatch = useDispatch();    
+
     return (
         <header className="header">
             <div className="container">
@@ -22,7 +26,7 @@ export const Header: FC = () => {
                         </ul>
                         <CustomSearch />
                     </div>
-                    <Button className="header__btn" type="button">Войти</Button>
+                    <Button className="header__btn" type="button" onClick={() => dispatch(openAuthModal())}>Войти</Button>
 
                 </div>
             </div>
