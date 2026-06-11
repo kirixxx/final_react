@@ -1,0 +1,28 @@
+.custom-search {
+    position: relative;
+
+    &__field {
+        border-radius: 12px;
+        background-color: $color-cape-cod;
+        padding: 12px 16px 12px 52px;
+        border: none;
+        color:$color-white;
+        font-size: 18px;
+        line-height: 24px;
+
+        width: 655px;
+        
+        &:focus-visible {
+            outline: none;
+            
+        }
+    }
+
+    &__icon {
+        color: $color-white;
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

@@ -3,6 +3,7 @@ import { Input } from "../components/Input/Input";
 import { Svg } from "../components/Svg/Svg";
 
 interface CustomInputProps {
+    className?: string;
     type?: 'radio' | 'text' | 'number' | 'email' | 'search';
     name?: string;
     ariaLabel?: string;
@@ -14,6 +15,7 @@ interface CustomInputProps {
 }
 
 export const CustomInput: FC<CustomInputProps> = ({
+    className='custom-input',
     type,
     name,
     ariaLabel,
@@ -24,9 +26,9 @@ export const CustomInput: FC<CustomInputProps> = ({
     svgHeight=24
 }) => {
     return (
-        <div className="custom-input">
-            <Svg className="custom-input__icon" width={svgWidth} height={svgHeight} iconId={svgId} />
-            <Input className="custom-input__field" type={type} name={name} id={id} placeHolder={placeHolder} ariaLabel={ariaLabel} />
+        <div className={className}>
+            <Svg className={`${className}__icon`} width={svgWidth} height={svgHeight} iconId={svgId} />
+            <Input className={`${className}__field`} type={type} name={name} id={id} placeHolder={placeHolder} ariaLabel={ariaLabel} />
         </div>
     )
 }

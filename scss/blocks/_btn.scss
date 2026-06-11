@@ -1,0 +1,9 @@
+.btn {
+
+    &__clear {
+        background-color: transparent;
+        border: none;
+        color: $color-black;
+        padding: 0;
+    }
+}
