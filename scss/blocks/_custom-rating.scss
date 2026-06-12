@@ -1,0 +1,21 @@
+.custom-rating {
+    width: 70px;
+    height: 32px;
+    background-color: $color-forest-green;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: center;
+
+    &__icon {
+        color: $color-white;
+    }
+
+    &__value {
+        color: $color-white;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 700;
+    }
+}

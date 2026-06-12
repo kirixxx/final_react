@@ -6,4 +6,17 @@
         color: $color-black;
         padding: 0;
     }
+
+    &--size-small {
+        padding: 16px 22px;
+    }
+
+    &--color-blue {
+        background-color: $color-cornflower-blue;
+    }
+    
+    &--color-gray {
+        background-color: $color-cape-cod;
+    }
+
 }

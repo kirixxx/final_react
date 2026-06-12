@@ -1,0 +1,69 @@
+.featured-movie {
+    &__wrapper {
+        display: flex;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        font-family: $ff-main;
+        justify-content: center;
+        max-width: 600px;
+    }
+
+    &__details {
+        flex-direction: row;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+
+        &-text {
+            font-size: 18px;
+            line-height: 24px;
+            color: $color-white-opacity-7;
+        }
+    }
+
+    &__title {
+        font-size: 48px;
+        line-height: 56px;
+        color: $color-white;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    &__text {
+        font-size: 24px;
+        line-height: 32px;
+        color: $color-white-opacity-7;
+        margin: 0;
+    }
+
+    &__trailer {
+        width: 680px;
+        height: 552px;
+        border-radius: 16px;
+        border: 1px solid $color-white;
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    &__btn {
+        display: flex;
+        font-family: $ff-main;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 700;
+        border-radius: 28px;
+        background-color: $color-mine-shaft;
+        color: $color-white;
+        padding: 16px 48px;
+        border: 1px solid $color-black-opacity-4;
+        cursor: pointer;
+    }
+}

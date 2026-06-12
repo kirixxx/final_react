@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { Svg } from "../Svg/Svg";
 
 interface RatingProps {
     size?: 'small' | 'large';
@@ -25,9 +26,7 @@ export const Rating: FC<RatingProps> = ({
     
     return (
         <div className={`custom-rating ${size === 'small' ? 'custom-rating--size-small' : ''}`}>
-            <svg className="custom-rating__icon" width={iconWidth} height={iconHeight} aria-hidden="true">
-                <use xlinkHref='assets/sprive.svg#icon-star'></use>
-            </svg>
+            <Svg className="custom-rating__icon" width={iconWidth} height={iconHeight} iconId="icon-star" />
             <span className="custom-rating__value">{ratingValue}</span>
         </div>
     )
