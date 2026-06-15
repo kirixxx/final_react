@@ -15,7 +15,7 @@ export const TopMovieList: FC<ITopMovieList> = ({
                     <ul className="top-movie__list">
                         {movieList.map(movie => (
                             <li className="top-movie__item" key={movie.id}>
-                                <img src={movie.backdropUrl} alt="Карточка фильма" className="top-movie__img" />
+                                <img src={movie.posterUrl ? movie.posterUrl : '#'} alt="Карточка фильма" className="top-movie__img" />
                             </li>
                         ))}
                     </ul>

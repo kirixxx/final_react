@@ -1,15 +1,35 @@
 .featured-movie {
     &__wrapper {
         display: flex;
+
+        @include vp-374 {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &__description {
+        display: flex;
+        padding: 0 15px 0 0;
+        flex-direction: column;
+        gap: 16px;
+        font-family: $ff-main-play;
+        justify-content: center;
+        max-width: 600px;
+
+        @include vp-374 {
+            gap: 12px;
+        }
     }
 
     &__info {
         display: flex;
         flex-direction: column;
-        gap: 16px;
-        font-family: $ff-main;
-        justify-content: center;
-        max-width: 600px;
+        gap: 60px;
+
+        @include vp-374 {
+            gap: 32px;
+            padding: 24px 0;
+        }
     }
 
     &__details {
@@ -22,6 +42,11 @@
             font-size: 18px;
             line-height: 24px;
             color: $color-white-opacity-7;
+
+            @include vp-374 {
+                font-size: 14px;
+                line-height: 20px;
+            }
         }
     }
 
@@ -31,6 +56,11 @@
         color: $color-white;
         font-weight: 700;
         margin: 0;
+
+        @include vp-374 {
+            font-size: 24px;
+            line-height: 32px;
+        }
     }
 
     &__text {
@@ -38,25 +68,55 @@
         line-height: 32px;
         color: $color-white-opacity-7;
         margin: 0;
+
+        @include vp-374 {
+            font-size: 18px;
+            line-height: 24px;
+        }
     }
 
     &__trailer {
         width: 680px;
         height: 552px;
         border-radius: 16px;
-        border: 1px solid $color-white;
+
+        @include vp-374 {
+            width: 338px;
+            height: 234px;
+        }
+
+        &-backimg {
+            height: 552px;
+            border-radius: 16px;
+            object-fit: cover;
+
+            @include vp-374 {
+                height: 234px;
+            }
+        }
     }
 
     &__actions {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        width: 538px;
+        grid-template-columns: 171px 190px 68px 68px;
         gap: 16px;
+
+        @include vp-374 {
+            grid-template-columns: 167px 68px 68px;
+
+            .movie-btn--size-xl {
+                grid-column: 1/4;
+            }
+        }
     }
+
 
     &__btn {
         display: flex;
-        font-family: $ff-main;
+        font-family: $ff-main-play;
         font-size: 18px;
+        justify-content: center;
         line-height: 24px;
         font-weight: 700;
         border-radius: 28px;
@@ -65,5 +125,9 @@
         padding: 16px 48px;
         border: 1px solid $color-black-opacity-4;
         cursor: pointer;
+
+        @include vp-374 {
+            padding: 16px 37px;
+        }
     }
 }

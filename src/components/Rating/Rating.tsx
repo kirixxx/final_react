@@ -3,7 +3,7 @@ import { Svg } from "../Svg/Svg";
 
 interface RatingProps {
     size?: 'small' | 'large';
-    ratingValue: number;
+    ratingValue?: string;
 }
 
 const sizeConfig = {
@@ -19,7 +19,7 @@ const sizeConfig = {
 
 export const Rating: FC<RatingProps> = ({
     size = 'large',
-    ratingValue,
+    ratingValue="5",
 }) => {
 
     const { iconWidth, iconHeight } = sizeConfig[size];

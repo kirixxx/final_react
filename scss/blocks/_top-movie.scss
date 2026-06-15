@@ -1,16 +1,24 @@
 .top-movie {
     &__wrapper {
         padding: 40px 0 120px;
-    }   
+
+        @include vp-374 {
+            padding: 32px 0;
+
+        }
+    }
 
     &__title {
-        margin: 0;
         padding: 0;
         font-size: 40px;
         line-height: 48px;
         font-weight: 700;
         color: $color-white;
         margin: 0 0 64px;
+
+        @include vp-374 {
+            margin: 0 0 40px;
+        }
     }
 
     &__list {
@@ -21,6 +29,14 @@
         counter-reset: section;
         padding: 0;
         margin: 0;
+
+        @include vp-374 {
+            width: 335px;
+            grid-auto-flow: column;
+            grid-template-columns: repeat(10, auto);
+            gap: 40px;
+            overflow: auto;
+        }
     }
 
     &__item {
@@ -51,5 +67,12 @@
             border-radius: 50px;
         }
     }
-}
 
+    &__img {
+        object-fit: cover;
+        height: 336px;
+        border-radius: 16px;
+    }
+
+
+}

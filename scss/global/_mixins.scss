@@ -1,0 +1,5 @@
+@mixin vp-374 {
+    @media (max-width: $vp-mobile) {
+        @content;
+    }
+}

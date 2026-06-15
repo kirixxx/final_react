@@ -10,7 +10,8 @@ export const TopMovie: FC = () => {
     const topMovieQuery = useQuery({
         queryFn: () => getTop10Movie(),
         queryKey: ["movie", "top10"],
-        retry: false
+        retry: false,
+        refetchOnWindowFocus: false,
     }, queryClient);
 
     switch (topMovieQuery.status) {
