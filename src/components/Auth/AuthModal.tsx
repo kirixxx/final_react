@@ -10,10 +10,10 @@ import { RegisterForm } from "./RegisterForm";
 export const AuthModal = () => {
     const isOpen = useSelector(selectAuthModal);
     const dispatch = useDispatch();
-    const [ authType, setAuthType ] = useState<string>('login');
+    const [authType, setAuthType] = useState<string>('login');
 
     const changeAuthType = () => {
-        setAuthType(authType === 'login' ? 'register': 'login');
+        setAuthType(authType === 'login' ? 'register' : 'login');
     }
 
     if (!isOpen) {
@@ -21,14 +21,16 @@ export const AuthModal = () => {
     }
 
     return (
-        <div className="login">
-            <div className="login__wrapper">
-                <div className="login__icon" onClick={() => dispatch(closeAuthModal())}>
-                    <Svg className="login__icon-close" iconId="icon-close" />
+        <div className="modal-overlay">
+            <div className="login">
+                <div className="login__wrapper">
+                    <div className="login__icon" onClick={() => dispatch(closeAuthModal())}>
+                        <Svg className="login__icon-close" iconId="icon-close" />
+                    </div>
+                    <img className="login__logo-img" src="/src/assets/images/logoBlack.png" alt="Лого" width={132} height={29} />
+                    {authType === "login" ? <LoginForm /> : <RegisterForm />}
+                    <Button className="login__btn btn__clear" type="button" onClick={changeAuthType}>{authType === 'login' ? "Регистрация" : "У меня есть аккаунт"}</Button>
                 </div>
-                <img className="login__logo-img" src="/src/assets/images/logoBlack.png" alt="Лого" width={132} height={29} />
-                {authType === "login" ? <LoginForm /> : <RegisterForm /> }
-                <Button className="login__btn btn__clear" type="button" onClick={changeAuthType}>{authType === 'login' ? "Регистрация": "У меня есть аккаунт"}</Button>
             </div>
         </div>
     )

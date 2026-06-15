@@ -1,30 +1,36 @@
-import type { FC } from "react";
+import { forwardRef } from "react";
 
 interface InputProps {
     name?: string;
     ariaLabel?: string;
     id?: string;
-    className: string;
-    type?: 'radio' | 'text' | 'number' | 'email' | 'search';
-    placeHolder?: string;
+    className?: string;
+    type?: 'radio' | 'text' | 'number' | 'email' | 'search' | 'password';
+    placeholder?: string;
+    defaultValue?: string;
 }
 
-export const Input: FC<InputProps> = ({
+export const Input = forwardRef<HTMLInputElement, InputProps>(({
     name,
     id,
-    className,
-    type,
+    className = '',
+    type = 'text',
     ariaLabel,
-    placeHolder
-}) => {
+    placeholder,
+    defaultValue,
+    ...props
+}, ref) => {
     return (
         <input 
+            ref={ref}
             type={type}
             id={id}
             className={className}
             name={name}
-            placeholder={placeHolder}
+            placeholder={placeholder}
             aria-label={ariaLabel}
+            defaultValue={defaultValue}
+            {...props}  
         />        
-)
-}
+    );
+});

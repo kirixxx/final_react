@@ -4,16 +4,40 @@ import { Link } from "react-router-dom";
 import { CustomSearch } from "../CustomSearch/CustomSearch";
 import { useDispatch } from "react-redux";
 import { openAuthModal } from "../../features/authModal/authModalSlice";
+import { useQuery } from "@tanstack/react-query";
+import { profile } from "../../api/User";
+import { queryClient } from "../../api/queryClient";
+import { Loader } from "../Loader";
 
 export const Header: FC = () => {
-    const dispatch = useDispatch();    
+    const dispatch = useDispatch();
 
+    const meQuery = useQuery({
+        queryFn: () => profile(),
+        queryKey: ["profile", "me"],
+        retry: false
+    }, queryClient);
+
+    const renderAuthButton = () => {
+        console.log("meQuery.status:", meQuery.status);
+
+        switch (meQuery.status) {
+            case "pending":
+                return <Button className="header__btn" type="button" >
+                    <Loader />
+                </Button>
+            case "error":
+                return <Button className="header__btn" type="button" onClick={() => dispatch(openAuthModal())}>Войти</Button>
+            case "success":
+                return <Button className="header__btn" type="button">Авторизован</Button>
+        }
+    }
     return (
         <header className="header">
             <div className="container">
                 <div className="header__wrapper">
                     <a href="#" className="header__logo-link">
-                        <img className="header__logo-img" src="/src/assets/images/logo.png" alt="Лого" width={143} height={32}/>
+                        <img className="header__logo-img" src="/src/assets/images/logo.png" alt="Лого" width={143} height={32} />
                     </a>
                     <div className="header__box">
                         <ul className="header__nav-list">
@@ -26,8 +50,7 @@ export const Header: FC = () => {
                         </ul>
                         <CustomSearch />
                     </div>
-                    <Button className="header__btn" type="button" onClick={() => dispatch(openAuthModal())}>Войти</Button>
-
+                    {renderAuthButton()}
                 </div>
             </div>
         </header>
