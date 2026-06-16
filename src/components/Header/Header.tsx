@@ -21,6 +21,7 @@ export const Header: FC = () => {
         queryFn: () => profile(),
         queryKey: ["profile", "me"],
         retry: false,
+        refetchOnWindowFocus: false,
     }, queryClient);
 
     useEffect(() => {

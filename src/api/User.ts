@@ -28,7 +28,7 @@ export function login(email: string, password: string): Promise<void> {
 
 export function logout(): Promise<void> {
     return fetch(`${SERVER}/auth/logout`, {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },

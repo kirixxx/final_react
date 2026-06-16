@@ -2,6 +2,7 @@
     &__wrapper {
         display: flex;
         padding: 32px 0 0;
+
         @include vp-374 {
             flex-direction: column-reverse;
             padding: 0;
@@ -70,6 +71,9 @@
         line-height: 32px;
         color: $color-white-opacity-7;
         margin: 0;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // max-height: 300px;
 
         @include vp-374 {
             font-size: 18px;

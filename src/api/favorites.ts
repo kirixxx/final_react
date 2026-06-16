@@ -1,7 +1,14 @@
+import z from "zod";
 import { validateResponse } from "../validate/validateResponse";
 import { MovieArraySchema, type MovieArrayType } from "./Movie";
 import { ProfileScheme, type Profile } from "./User";
 const SERVER = 'https://cinemaguide.skillbox.cc';
+
+export const ResponseSchema = z.object({
+    result: z.boolean(),
+});
+
+export type Response = z.infer<typeof ResponseSchema>;
 
 export function getFavoritesMovie(): Promise<MovieArrayType> {
     return fetch(`${SERVER}/favorites`, {
@@ -30,16 +37,19 @@ export function deleteFavoriteMovie(movieId: number): Promise<Profile> {
         .then(data => ProfileScheme.parse(data))
 }
 
-export function addFavoriteMovie(movieId: number): Promise<Profile> {
+export function addFavoriteMovie(movieId: number): Promise<Response> {
     return fetch(`${SERVER}/favorites`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded"
         },
         credentials: "include",
-        body: JSON.stringify(movieId)
+        body: new URLSearchParams({ id: movieId.toString() })
     })
         .then(validateResponse)
         .then(response => response.json())
-        .then(data => ProfileScheme.parse(data))
+        .then((data) => {
+            console.log(data);
+            return    ResponseSchema.parse(data)}
+        )
 }
