@@ -8,8 +8,7 @@ import { useMutation } from "@tanstack/react-query"
 import { addFavoriteMovie, deleteFavoriteMovie } from "../../api/favorites"
 import { queryClient } from "../../api/queryClient"
 import { useDispatch, useSelector } from "react-redux"
-import { setUserData, selectUserdata } from "../../features/userData/userDataSlice";
-import { data } from "react-router"
+import { selectUserdata } from "../../features/userData/userDataSlice";
 
 interface IFeaturedMovieView {
     movie: MovieType,
@@ -28,7 +27,6 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
         return <span>Ошибка!!</span>
     }
 
-    const dispatch = useDispatch();
     const userData = useSelector(selectUserdata);
     const isFavorite = userData.favorites?.includes(movie.id.toString()) || false;
 
