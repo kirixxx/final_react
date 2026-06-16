@@ -1,6 +1,11 @@
 .custom-search {
     position: relative;
 
+    @include vp-374 {
+        color: $color-white;
+        display: none;
+    }
+
     &__field {
         border-radius: 12px;
         background-color: $color-cape-cod;

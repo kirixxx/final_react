@@ -7,10 +7,12 @@ import { formatRuntime } from "../../utils/formatRuntime"
 
 interface IFeaturedMovieView {
     movie: MovieType,
+    onRefresh: () => void;
 }
 
 export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
-    movie
+    movie,
+    onRefresh
 }) => {
     if (!movie) {
         return <span>Ошибка!!</span>
@@ -37,7 +39,7 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
                             <Button className="featured-movie__btn btn--size-small" type="button">
                                 <Svg iconId="icon-like" />
                             </Button>
-                            <Button className="featured-movie__btn btn--size-small" type="button">
+                            <Button className="featured-movie__btn btn--size-small" type="button" onClick={onRefresh}>
                                 <Svg iconId="icon-reset" />
                             </Button>
                         </div>

@@ -10,12 +10,22 @@
         gap: 80px;
         align-items: center;
         padding: 24px 0;
+
+        @include vp-374 {
+            gap: 0;
+            padding: 16px 0;
+            justify-content: space-between;
+        }
     }
 
     &__box {
         display: flex;
         flex-direction: row;
         gap: 40px;
+
+        @include vp-374 {
+            gap: 20px;
+        }
     }
 
     &__nav-list {
@@ -28,10 +38,31 @@
         align-items: center;
     }
 
+    &__nav-item--hide-mobile {
+        @include vp-374 {
+            display: none;
+        }
+    }
+
     &__nav-link {
         color: $color-white;
         text-decoration: none;
+
+        @include vp-374 {
+            display: none;
+        }
     }
+
+    &__nav-icon {
+        display: none;
+
+        @include vp-374 {
+            display: block;
+            color: $color-white;
+        }
+    }
+
+
 
     &__btn {
         background-color: transparent;
@@ -39,5 +70,9 @@
         color: $color-white;
         width: 69px;
         padding: 8px 0;
+
+        @include vp-374 {
+            display: none;
+        }
     }
 }

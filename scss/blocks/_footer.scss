@@ -3,6 +3,11 @@
         padding: 42px 80px;
         display: flex;
         justify-content: flex-end;
+
+        @include vp-374 {
+            padding: 24px 20px;
+            justify-content: flex-start;
+        }
     }
 
     &__socials-list {
@@ -12,7 +17,7 @@
         flex-direction: row;
         gap: 24px;
         list-style-type: none;
-    }   
+    }
 
     &__socials-link {
         border-radius: 8px;
@@ -22,6 +27,35 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include vp-374 {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &__socials-icon {
+        @include vp-374 {
+            &--vk {
+                width: 12px;
+                height: 7px;
+            }
+
+            &--ut {
+                width: 10px;
+                height: 7px;
+            }
+
+            &--ok {
+                width: 7px;
+                height: 11px;
+            }
+
+            &--tg {
+                width: 11px;
+                height: 9px;
+            }
+        }
     }
 
     &__socials-icon {

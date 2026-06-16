@@ -78,3 +78,4 @@ export function getRandomMovie(): Promise<MovieType> {
     .then(response => response.json())
     .then(data => MovieSchema.parse(data))
 }
+

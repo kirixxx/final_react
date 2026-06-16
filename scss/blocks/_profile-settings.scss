@@ -1,0 +1,62 @@
+.profile-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    font-family: $ff-main-play;
+
+    &__info {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 4px 16px;
+        color: $color-white;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 400;
+    }
+
+    &__text {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+    }
+    &--size-xl {
+        grid-row: 1/3;
+    }
+
+    &__ava {
+        background-color: $color-white-opacity-5;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-white;
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+    }
+
+    &__data {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    &__btn {
+        width: 262px;
+        padding: 16px 10px;
+        background-color: $color-cornflower-blue;
+        color: $color-white;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 700;
+        border-radius: 28px;
+        border: none;
+        cursor: pointer;
+    }
+}

@@ -9,22 +9,22 @@ export const Footer: FC = () => {
                     <ul className="footer__socials-list">
                         <li className="footer__socials-item">
                             <a href="#" className="footer__socials-link">
-                                <Svg className="footer__socials-icon" width={19} height={11} iconId="icon-vk" />
+                                <Svg className="footer__socials-icon footer__socials-icon--vk" width={19} height={11} iconId="icon-vk" />
                             </a>
                         </li>
                         <li className="footer__socials-item">
                             <a href="#" className="footer__socials-link">
-                                <Svg className="footer__socials-icon" width={16} height={12} iconId="icon-utube" />
+                                <Svg className="footer__socials-icon footer__socials-icon--ut" width={16} height={12} iconId="icon-utube" />
                             </a>
                         </li>
                         <li className="footer__socials-item">
-                            <a href="#" className="footer__socials-link">
-                                <Svg className="footer__socials-icon" width={11} height={18} iconId="icon-ok" />
+                            <a href="#" className="footer__socials-link ">
+                                <Svg className="footer__socials-icon footer__socials-icon--ok" width={11} height={18} iconId="icon-ok" />
                             </a>
                         </li>
                         <li className="footer__socials-item">
-                            <a href="#" className="footer__socials-link">
-                                <Svg className="footer__socials-icon" width={17} height={14} iconId="icon-tg" />
+                            <a href="#" className="footer__socials-link ">
+                                <Svg className="footer__socials-icon footer__socials-icon--tg" width={17} height={14} iconId="icon-tg" />
                             </a>
                         </li>
                     </ul>

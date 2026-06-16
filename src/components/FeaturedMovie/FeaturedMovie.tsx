@@ -18,6 +18,9 @@ export const FeaturedMovie: FC = () => {
         refetchOnWindowFocus: false,
     }, queryClient);
 
+    const handleRefreshRandomMovie = () => {
+        randomMovieQuery.refetch();
+    }
     console.log("randomMovieQuery.status", randomMovieQuery.status);
 
     switch (randomMovieQuery.status) {
@@ -26,7 +29,7 @@ export const FeaturedMovie: FC = () => {
         case "pending":
             return <Loader />
         case "success":
-            return <FeaturedMovieView movie={randomMovieQuery.data} />
+            return <FeaturedMovieView movie={randomMovieQuery.data} onRefresh={handleRefreshRandomMovie}/>
     }
     
 }

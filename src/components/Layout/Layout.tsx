@@ -12,7 +12,7 @@ export const Layout = () => {
 
   return (
     <div className={`app-layout ${isOpenLoginModal ? 'app-layout--color-dark': ''}`}>
-      {/* <Header /> */}
+      <Header /> 
       <main className="main-content">
         <Outlet />
       </main>
