@@ -12,16 +12,20 @@ import { useDispatch } from "react-redux";
 import { authModalSlice, closeAuthModal } from "../../features/authModal/authModalSlice";
 
 const loginFormSchema = z.object({
-    email: z.string().email("no correct format"),
-    password: z.string().min(8)
-})
+    email: z.string()
+        .email("Неверный формат email")
+        .min(1, "Email обязателен для заполнения"),
+    password: z.string()
+        .min(8, "Пароль должен содержать минимум 8 символов")
+        .max(50, "Пароль слишком длинный")
+});
 
 type loginFormType = z.infer<typeof loginFormSchema>;
 
 export const LoginForm: FC = () => {
     const dispathcAuthModal = useDispatch();
 
-    const { register, handleSubmit } = useForm<loginFormType>({
+    const { register, handleSubmit, formState: { errors } } = useForm<loginFormType>({
         resolver: zodResolver(loginFormSchema)
     });
 
@@ -38,8 +42,22 @@ export const LoginForm: FC = () => {
             loginMutation.mutate(data)
         })}>
             <div className="login__form-inner">
-                <CustomInput type="text" {...register("email")} id="login-user" ariaLabel="login-user" placeHolder="Электронная почта" svgId="icon-mail" />
-                <CustomInput type="password" {...register("password")} id="login-pass" ariaLabel="login-pass" placeHolder="Пароль" svgId="icon-pass" />
+                <CustomInput
+                    type="text" {...register("email")}
+                    id="login-user" ariaLabel="login-user"
+                    placeHolder="Электронная почта"
+                    svgId="icon-mail"
+                    error={errors.email}
+                />
+                <CustomInput
+                    type="password"
+                    {...register("password")}
+                    id="login-pass"
+                    ariaLabel="login-pass"
+                    placeHolder="Пароль"
+                    svgId="icon-pass"
+                    error={errors.password}
+                />
             </div>
             <Button className="login__btn" type="submit" isLoading={loginMutation.isPending}>Войти</Button>
         </form>

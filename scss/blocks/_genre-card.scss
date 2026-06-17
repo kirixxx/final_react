@@ -1,6 +1,9 @@
 .genre-card {
     border-radius: 24px;
     background-color: $color-dav-gray;
+    border: 1px solid $color-white-opacity-2;
+    box-shadow: $shadow-home-card;
+
 
     &__img {
         width: 290px;
@@ -16,7 +19,7 @@
         line-height: 32px;
         color: $color-white;
         background-color: $color-black;
-        padding: 22px 90px;
+        padding: 22px 90px 30px;
         border-radius: 0 0 24px 24px;
         text-align: center;
     }

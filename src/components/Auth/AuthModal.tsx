@@ -25,7 +25,7 @@ export const AuthModal = () => {
             <div className="login">
                 <div className="login__wrapper">
                     <div className="login__icon" onClick={() => dispatch(closeAuthModal())}>
-                        <Svg className="login__icon-close" iconId="icon-close" />
+                        <Svg className="login__icon-close" iconId="icon-close-xl" />
                     </div>
                     <img className="login__logo-img" src="/src/assets/images/logoBlack.png" alt="Лого" width={132} height={29} />
                     {authType === "login" ? <LoginForm /> : <RegisterForm />}

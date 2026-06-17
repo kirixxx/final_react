@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import { Button } from "../Button/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CustomSearch } from "../CustomSearch/CustomSearch";
 import { useDispatch, useSelector } from "react-redux";
 import { openAuthModal } from "../../features/authModal/authModalSlice";
@@ -17,7 +17,8 @@ export const Header: FC = () => {
 
     const userData = useSelector(selectUserdata);
     const location = useLocation();
-
+    const navigate = useNavigate();
+    
     const isActiveBtn = (path: string) => {
         return location.pathname === path;
     }
@@ -72,7 +73,7 @@ export const Header: FC = () => {
                     <a href="#" className="header__logo-link">
                         <picture className="header__logo-picture">
                             <source media="(max-width: 756px)" srcSet="/src/assets/images/logo-mobile.png" width={80} height={32}></source>
-                            <img className="header__logo-img" src="/src/assets/images/logo.png" alt="Лого" width={143} height={32} />
+                            <img className="header__logo-img" src="/src/assets/images/logo.png" alt="Лого" width={143} height={32} onClick={() => navigate('/')} />
                         </picture>
                     </a>
                     <div className="header__box">

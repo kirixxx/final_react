@@ -1,6 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { addFavoriteMovie, deleteFavoriteMovie } from "../api/favorites";
 import { queryClient } from "../api/queryClient";
+import type { ApiError } from "../validate/validateResponse";
+import { useDispatch } from "react-redux";
+import { openAuthModal } from "../features/authModal/authModalSlice";
 
 
 type likeMovie = {
@@ -8,12 +11,13 @@ type likeMovie = {
 }
 
 export const useFavorites = () => {
+    const dispatch = useDispatch();
 
     const invalidateQueris = () => {
         queryClient.invalidateQueries({ queryKey: ["profile", "me"] })
         queryClient.invalidateQueries({ queryKey: ["movie", "favorites"] })
     }
-    
+
     const likeMutation = useMutation({
         mutationFn: (data: likeMovie) => addFavoriteMovie(data.id),
         onSuccess: (data) => {
@@ -22,8 +26,12 @@ export const useFavorites = () => {
                 invalidateQueris();
             }
         },
-        onError: (error) => {
-            console.error("likeMutation: ", error)
+        onError: (error: ApiError) => {
+            console.error("likeMutation: ", error.message)
+
+            if (error.status === 401) {
+                dispatch(openAuthModal());
+            }
         }
     })
 

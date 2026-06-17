@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import { CustomInput } from "../../ui/CustomIput";
 import { Button } from "../Button/Button";
 import { z } from 'zod';
@@ -9,6 +9,7 @@ import { registration } from "../../api/User";
 import { queryClient } from "../../api/queryClient";
 import { useDispatch } from "react-redux";
 import { closeAuthModal } from "../../features/authModal/authModalSlice";
+import { useNavigate } from "react-router";
 
 const registrFormSchema = z.object({
     email: z.string().email("Неверный формат email"),
@@ -21,6 +22,8 @@ const registrFormSchema = z.object({
     path: ["confirmPassword"],
 });
 
+type IRegisterType = 'register' | 'successRegister';
+
 type registrFormType = z.infer<typeof registrFormSchema>;
 
 export const RegisterForm: FC = () => {
@@ -28,13 +31,15 @@ export const RegisterForm: FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<registrFormType>({
         resolver: zodResolver(registrFormSchema)
     });
-
+    const [registerType, setRegisterType] = useState<IRegisterType>('register');
+    
     const registrationMutation = useMutation({
         mutationFn: (data: registrFormType) =>
             registration(data.email, data.password, data.name, data.surname),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["profile", "me"] });
-            dispatch(closeAuthModal());
+            setRegisterType('successRegister');
+            // dispatch(closeAuthModal());
         },
         onError: (error: Error) => {
             console.error("Registration error:", error);
@@ -43,75 +48,89 @@ export const RegisterForm: FC = () => {
 
 
     return (
-        <form className="register__form" onSubmit={handleSubmit((data: registrFormType) => {
-            registrationMutation.mutate(data);
-        })}>
-            <div className="register__form-inner">
-                <CustomInput
-                    type="email"
-                    {...register("email")}
-                    id="register-user"
-                    ariaLabel="register-user"
-                    placeHolder="Электронная почта"
-                    svgId="icon-mail"
-                />
-                {errors.email && <span className="error">{errors.email.message}</span>}
-
-                <CustomInput
-                    type="text"
-                    {...register("name")}
-                    id="register-name"
-                    ariaLabel="register-name"
-                    placeHolder="Имя"
-                    svgId="icon-people"
-                />
-                {errors.name && <span className="error">{errors.name.message}</span>}
-
-                <CustomInput
-                    type="text"
-                    {...register("surname")}
-                    id="register-surname"
-                    ariaLabel="register-surname"
-                    placeHolder="Фамилия"
-                    svgId="icon-people"
-                />
-                {errors.surname && <span className="error">{errors.surname.message}</span>}
-
-                <CustomInput
-                    type="password"
-                    {...register("password")}
-                    id="register-pass"
-                    ariaLabel="register-pass"
-                    placeHolder="Пароль"
-                    svgId="icon-pass"
-                />
-                {errors.password && <span className="error">{errors.password.message}</span>}
-
-                <CustomInput
-                    type="password"
-                    {...register("confirmPassword")}
-                    id="register-confirmPass"
-                    ariaLabel="register-confirmPass"
-                    placeHolder="Подтвердить пароль"
-                    svgId="icon-pass"
-                />
-                {errors.confirmPassword && <span className="error">{errors.confirmPassword.message}</span>}
+        registerType === 'register' ?
+            <div className="register-success">
+                <h2 className="register-success__title">Регистрация завершена</h2>
+                <p className="register-success__text">Используйте вашу электронную почту для входа</p>
+                <Button
+                    className="register__btn"
+                    type="button"
+                >
+                    Войти
+                </Button>
             </div>
+        :
 
-            <Button
-                className="register__btn"
-                type="submit"
-                isLoading={registrationMutation.isPending}
-                disabled={registrationMutation.isPending}
-            >
-                {registrationMutation.isPending ? "Регистрация..." : "Создать аккаунт"}
-            </Button>
+            <form className="register__form" onSubmit={handleSubmit((data: registrFormType) => {
+                registrationMutation.mutate(data);
+            })}>
+                <legend className="register__form-legend">Регистрация</legend>
+                <div className="register__form-inner">
+                    <CustomInput
+                        type="email"
+                        {...register("email")}
+                        id="register-user"
+                        ariaLabel="register-user"
+                        placeHolder="Электронная почта"
+                        svgId="icon-mail"
+                        error={errors.email}
+                    />
+                    <CustomInput
+                        type="text"
+                        {...register("name")}
+                        id="register-name"
+                        ariaLabel="register-name"
+                        placeHolder="Имя"
+                        svgId="icon-people"
+                        error={errors.name}
+                    />
+                    <CustomInput
+                        type="text"
+                        {...register("surname")}
+                        id="register-surname"
+                        ariaLabel="register-surname"
+                        placeHolder="Фамилия"
+                        svgId="icon-people"
+                        error={errors.surname}
 
-            {registrationMutation.isError && (
-                <div className="error-message">
-                    {registrationMutation.error?.message || "Ошибка регистрации"}
+                    />
+                    <CustomInput
+                        type="password"
+                        {...register("password")}
+                        id="register-pass"
+                        ariaLabel="register-pass"
+                        placeHolder="Пароль"
+                        svgId="icon-pass"
+                        error={errors.password}
+
+                    />
+                    <CustomInput
+                        type="password"
+                        {...register("confirmPassword")}
+                        id="register-confirmPass"
+                        ariaLabel="register-confirmPass"
+                        placeHolder="Подтвердить пароль"
+                        svgId="icon-pass"
+                        error={errors.confirmPassword}
+
+                    />
                 </div>
-            )}
-        </form>
+
+                <Button
+                    className="register__btn"
+                    type="submit"
+                    isLoading={registrationMutation.isPending}
+                    disabled={registrationMutation.isPending}
+                >
+                    {registrationMutation.isPending ? "Регистрация..." : "Создать аккаунт"}
+                </Button>
+
+                {registrationMutation.isError && (
+                    <div className="error-message">
+                        {registrationMutation.error?.message || "Ошибка регистрации"}
+                    </div>
+                )}
+            </form>
+            
     );
 };

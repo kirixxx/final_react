@@ -90,7 +90,7 @@ export function getRandomMovie(): Promise<MovieType> {
         .then(data => MovieSchema.parse(data))
 }
 
-export function getMoviesGenre(): Promise<GenreArrayType> {
+export function getGenres(): Promise<GenreArrayType> {
     return fetch(`${SERVER}/movie/genres`, {
         method: "GET",
         headers: {
@@ -108,4 +108,16 @@ export function getMoviesGenre(): Promise<GenreArrayType> {
             console.log('genres', genres)
             return GenreArraySchema.parse(genres);
         })
+}
+
+export function getGenreMovies(genre: string): Promise<MovieArrayType> {
+    return fetch(`${SERVER}/movie?genre=${genre}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(validateResponse)
+        .then(response => response.json())
+        .then(data => MovieArraySchema.parse(data))
 }

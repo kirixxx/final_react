@@ -4,6 +4,7 @@ import { MainPage } from "./pages/Main/MainPage";
 import { ProfilePage } from "./pages/Profile/ProfilePage";
 import { MoviePage } from "./pages/Movies/MoviesPage";
 import { GenresPage } from "./pages/Genres/GenresPage";
+import { GenreMovie } from "./pages/GenreMovie/GenreMovie";
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="genres" element={<GenresPage />} />
-        {/* <Route path="genres/:genreId" element={<GenresPage />} /> */}
+        <Route path="genres/:genreId" element={<GenreMovie />} />
         <Route path="movie/:movieId" element={<MoviePage />} />
         <Route path="profile/:userId" element={<ProfilePage />} />
       </Route>

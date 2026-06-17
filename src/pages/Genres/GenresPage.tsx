@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import type { FC } from "react";
-import { getMoviesGenre } from "../../api/Movie";
+import { getGenres } from "../../api/Movie";
 import { GenreCard } from "../../components/GenreCard.js/GenreCard";
 
 export const GenresPage: FC = () => {
 
     const genreQuery = useQuery({
-        queryFn: () => getMoviesGenre(),
+        queryFn: () => getGenres(),
         queryKey: ["movie", "genres"],
         retry: false,
         refetchOnWindowFocus: false

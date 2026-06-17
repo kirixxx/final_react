@@ -17,6 +17,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    font-family: $ff-main-play;
 
     &__wrapper {
         width: 100%;
@@ -41,6 +42,7 @@
         top: 0;
         right: -72px;
         cursor: pointer;
+        color: $color-black
     }
 
     &__logo-img {
@@ -70,5 +72,6 @@
         font-size: 18px;
         line-height: 24px;
         cursor: pointer;
+        font-family: $ff-main-play;
     }
 }

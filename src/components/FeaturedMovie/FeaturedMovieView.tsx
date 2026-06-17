@@ -4,9 +4,11 @@ import { Rating } from "../Rating/Rating"
 import { Svg } from "../Svg/Svg"
 import type { MovieType } from "../../api/Movie"
 import { formatRuntime } from "../../utils/formatRuntime"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectUserdata } from "../../features/userData/userDataSlice";
 import { useFavorites } from "../../hooks/useFavorites"
+import { setSelectMovie } from "../../features/selectMovie/selectMovieSlice"
+import { useNavigate } from "react-router-dom"
 
 interface IFeaturedMovieView {
     movie: MovieType,
@@ -30,7 +32,9 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
     const userData = useSelector(selectUserdata);
     const isFavorite = userData.favorites?.includes(movie.id.toString()) || false;
     const { like, unlike } = useFavorites();
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const actionsSize = (!showAboutBtn && !showRefreshBtn) ? 'small': 'big';
     const toggleLikeMovie = () => {
         if (isFavorite) {
             unlike({ id: movie.id })
@@ -38,6 +42,12 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
             like({ id: movie.id })
         }
     }
+
+    const handleMovieCard = () => {
+        dispatch(setSelectMovie(movie))
+        navigate(`/movie/${movie.id}`);
+    }
+
     return (
         <section className="featured-movie">
             <div className="container">
@@ -53,9 +63,9 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
                             <p className="featured-movie__title">{movie.title}</p>
                             <p className="featured-movie__text">{movie.plot}</p>
                         </div>
-                        <div className="featured-movie__actions">
+                        <div className={`featured-movie__actions ${actionsSize === 'small' ? 'size--small': ''}`}>
                             <Button className="featured-movie__btn movie-btn--size-xl btn--color-blue" type="button">Трейлер</Button>
-                            {showAboutBtn && <Button className="featured-movie__btn btn--color-gray" type="button">О фильме</Button>}
+                            {showAboutBtn && <Button className="featured-movie__btn btn--color-gray" type="button" onClick={handleMovieCard}>О фильме</Button>}
                             <Button className={`featured-movie__btn  btn--size-small`} type="button" onClick={toggleLikeMovie}>
                                 {isFavorite ?
                                     <Svg className='featured-movie__icon' iconId="icon-favorite" />

@@ -108,6 +108,10 @@
         grid-template-columns: 171px 190px 68px 68px;
         gap: 16px;
 
+        &.size--small {
+            grid-template-columns: 171px 68px;
+        }
+        
         @include vp-374 {
             grid-template-columns: 167px 68px 68px;
 
