@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import { Button } from "../Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CustomSearch } from "../CustomSearch/CustomSearch";
 import { useDispatch, useSelector } from "react-redux";
 import { openAuthModal } from "../../features/authModal/authModalSlice";
@@ -16,6 +16,11 @@ export const Header: FC = () => {
     const dispatch = useDispatch();
 
     const userData = useSelector(selectUserdata);
+    const location = useLocation();
+
+    const isActiveBtn = (path: string) => {
+        return location.pathname === path;
+    }
 
     const meQuery = useQuery({
         queryFn: () => profile(),
@@ -52,7 +57,7 @@ export const Header: FC = () => {
             case "success":
                 return (
                     <>
-                        <Button className="header__btn" type="button">
+                        <Button className={`btn header__btn ${isActiveBtn(`/profile/${userData.name}`) ? 'active' : ''}`} type="button">
                             <Link to={`/profile/${userData.name}`}>{userData.name}</Link>
                         </Button>
                         <Svg className="header__nav-icon" iconId="icon-user" />
@@ -73,11 +78,11 @@ export const Header: FC = () => {
                     <div className="header__box">
                         <ul className="header__nav-list">
                             <li className="header__nav-item header__nav-item--hide-mobile">
-                                <Link className="header__nav-link" to={"/"}>Главная</Link>
+                                <Link className={`btn header__nav-link ${isActiveBtn('/') ? 'active' : ''}`} to={"/"}>Главная</Link>
                             </li>
                             <li className="header__nav-item">
                                 <Svg className="header__nav-icon" iconId="icon-genres" />
-                                <Link className="header__nav-link" to={"/genres"}>Жанры</Link>
+                                <Link className={`btn header__nav-link ${isActiveBtn('/genres') ? 'active' : ''}`} to={"/genres"}>Жанры</Link>
                             </li>
                         </ul>
                         <>

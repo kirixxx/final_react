@@ -19,14 +19,14 @@ export const MovieSchema = z.object({
     trailerYouTubeId: z.string().optional(),
     tmdbRating: z.number().optional(),
     searchL: z.string().optional(),
-    
+
     budget: z.string().nullable().optional().default(''),
     revenue: z.string().nullable().optional().default(''),
     homepage: z.string().nullable().optional().default(''),
     director: z.string().nullable().optional().default(''),
     production: z.string().nullable().optional().default(''),
     awardsSummary: z.string().nullable().optional().default(''),
-    
+
     backdropUrl: z.string().url().nullable().optional(),
     keywords: z.array(z.string()).nullable().optional().default([]),
     countriesOfOrigin: z.array(z.string()).nullable().optional().default([]),
@@ -40,6 +40,17 @@ export type MovieType = z.infer<typeof MovieSchema>;
 export const MovieArraySchema = z.array(MovieSchema);
 
 export type MovieArrayType = z.infer<typeof MovieArraySchema>;
+
+export const GenreSchema = z.object({
+    name: z.string(),
+    img: z.string()
+})
+
+export type GenreType = z.infer<typeof GenreSchema>;
+
+export const GenreArraySchema = z.array(GenreSchema);
+
+export type GenreArrayType = z.infer<typeof GenreArraySchema>;
 
 export function getTop10Movie(): Promise<MovieArrayType> {
     return fetch(`${SERVER}/movie/top10`, {
@@ -55,7 +66,7 @@ export function getTop10Movie(): Promise<MovieArrayType> {
             console.log('Data type:', typeof data);
             console.log('Is array:', Array.isArray(data));
             console.log('First item:', data[0]);
-            
+
             try {
                 const parsed = MovieArraySchema.parse(data);
                 console.log('Parsed successfully:', parsed);
@@ -74,8 +85,27 @@ export function getRandomMovie(): Promise<MovieType> {
             "Content-Type": "application/json"
         }
     })
-    .then(validateResponse)
-    .then(response => response.json())
-    .then(data => MovieSchema.parse(data))
+        .then(validateResponse)
+        .then(response => response.json())
+        .then(data => MovieSchema.parse(data))
 }
 
+export function getMoviesGenre(): Promise<GenreArrayType> {
+    return fetch(`${SERVER}/movie/genres`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include"
+    })
+        .then(validateResponse)
+        .then(response => response.json())
+        .then(data => {
+            const genres = data.map((genreName: string) => ({
+                name: genreName,
+                img: `src/assets/images/genres/${genreName}.png`
+            }));
+            console.log('genres', genres)
+            return GenreArraySchema.parse(genres);
+        })
+}

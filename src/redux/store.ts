@@ -1,6 +1,8 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import authModalReducer from "../features/authModal/authModalSlice";
 import userDataReducer from "../features/userData/userDataSlice";
+import selectMovieReducer from "../features/selectMovie/selectMovieSlice";
+
 
 // const rootReducer = combineReducers({
 //     authModal: authModalReducer,
@@ -11,6 +13,7 @@ export const store = configureStore({
     reducer: {
         authModal: authModalReducer,
         userData: userDataReducer,
+        selectMovie: selectMovieReducer,
     },
 });
 

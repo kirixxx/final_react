@@ -2,6 +2,8 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import { MainPage } from "./pages/Main/MainPage";
 import { ProfilePage } from "./pages/Profile/ProfilePage";
+import { MoviePage } from "./pages/Movies/MoviesPage";
+import { GenresPage } from "./pages/Genres/GenresPage";
 
 
 function App() {
@@ -9,9 +11,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
-        {/* <Route path="genres" element={<GenresPage />} />
-        <Route path="genres/:genreId" element={<GenresPage />} />
-        <Route path="movie/:movieId" element={<MoviesPage />} /> */}
+        <Route path="genres" element={<GenresPage />} />
+        {/* <Route path="genres/:genreId" element={<GenresPage />} /> */}
+        <Route path="movie/:movieId" element={<MoviePage />} />
         <Route path="profile/:userId" element={<ProfilePage />} />
       </Route>
     </Routes>

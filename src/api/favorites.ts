@@ -23,18 +23,17 @@ export function getFavoritesMovie(): Promise<MovieArrayType> {
         .then(data => MovieArraySchema.parse(data))
 }
 
-export function deleteFavoriteMovie(movieId: number): Promise<Profile> {
-    return fetch(`${SERVER}/favorites`, {
+export function deleteFavoriteMovie(movieId: number): Promise<Response> {
+    return fetch(`${SERVER}/favorites/${movieId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
         },
         credentials: "include",
-        body: JSON.stringify(movieId)
     })
         .then(validateResponse)
         .then(response => response.json())
-        .then(data => ProfileScheme.parse(data))
+        .then(data => ResponseSchema.parse(data))
 }
 
 export function addFavoriteMovie(movieId: number): Promise<Response> {

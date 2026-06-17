@@ -1,0 +1,8 @@
+.movie-card {
+
+    &__img {
+        object-fit: cover;
+        height: 336px;
+        border-radius: 16px;
+    }
+}

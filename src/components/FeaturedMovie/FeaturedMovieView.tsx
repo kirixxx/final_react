@@ -4,24 +4,24 @@ import { Rating } from "../Rating/Rating"
 import { Svg } from "../Svg/Svg"
 import type { MovieType } from "../../api/Movie"
 import { formatRuntime } from "../../utils/formatRuntime"
-import { useMutation } from "@tanstack/react-query"
-import { addFavoriteMovie, deleteFavoriteMovie } from "../../api/favorites"
-import { queryClient } from "../../api/queryClient"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectUserdata } from "../../features/userData/userDataSlice";
+import { useFavorites } from "../../hooks/useFavorites"
 
 interface IFeaturedMovieView {
     movie: MovieType,
-    onRefresh: () => void;
+    onRefresh?: () => void;
+    showAboutBtn?: boolean;
+    showRefreshBtn?: boolean;
 }
 
-type likeMovie = {
-    id: number;
-}
+
 
 export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
     movie,
-    onRefresh
+    onRefresh,
+    showAboutBtn = true,
+    showRefreshBtn = true,
 }) => {
     if (!movie) {
         return <span>Ошибка!!</span>
@@ -29,38 +29,13 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
 
     const userData = useSelector(selectUserdata);
     const isFavorite = userData.favorites?.includes(movie.id.toString()) || false;
-
-    const likeMutation = useMutation({
-        mutationFn: (data: likeMovie) => addFavoriteMovie(data.id),
-        onSuccess: (data) => {
-            if (data) {
-                queryClient.invalidateQueries({ queryKey: ["profile", "me"] })
-                queryClient.invalidateQueries({ queryKey: ["movie", "favorites"] })
-            }
-        },
-        onError: (error) => {
-            console.error("likeMutation: ", error)
-        }
-    })
-
-    const unlikeMutation = useMutation({
-        mutationFn: (data: likeMovie) => deleteFavoriteMovie(data.id),
-        onSuccess: (data) => {
-            if (data) {
-                queryClient.invalidateQueries({ queryKey: ["profile", "me"] })
-                queryClient.invalidateQueries({ queryKey: ["movie", "favorites"] })
-            }
-        },
-        onError: (error) => {
-            console.error("unlikeMutation: ", error)
-        }
-    });
+    const { like, unlike } = useFavorites();
 
     const toggleLikeMovie = () => {
         if (isFavorite) {
-            unlikeMutation.mutate({ id: movie.id })
+            unlike({ id: movie.id })
         } else {
-            likeMutation.mutate({ id: movie.id })
+            like({ id: movie.id })
         }
     }
     return (
@@ -80,7 +55,7 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
                         </div>
                         <div className="featured-movie__actions">
                             <Button className="featured-movie__btn movie-btn--size-xl btn--color-blue" type="button">Трейлер</Button>
-                            <Button className="featured-movie__btn btn--color-gray" type="button">О фильме</Button>
+                            {showAboutBtn && <Button className="featured-movie__btn btn--color-gray" type="button">О фильме</Button>}
                             <Button className={`featured-movie__btn  btn--size-small`} type="button" onClick={toggleLikeMovie}>
                                 {isFavorite ?
                                     <Svg className='featured-movie__icon' iconId="icon-favorite" />
@@ -88,9 +63,9 @@ export const FeaturedMovieView: FC<IFeaturedMovieView> = ({
                                     <Svg className='featured-movie__icon' iconId="icon-like" />
                                 }
                             </Button>
-                            <Button className="featured-movie__btn btn--size-small" type="button" onClick={onRefresh}>
+                            {showRefreshBtn && <Button className="featured-movie__btn btn--size-small" type="button" onClick={onRefresh}>
                                 <Svg iconId="icon-reset" />
-                            </Button>
+                            </Button>}
                         </div>
                     </div>
                     <div className="featured-movie__trailer">

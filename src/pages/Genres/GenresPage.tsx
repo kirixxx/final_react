@@ -1,15 +1,28 @@
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type { FC } from "react";
+import { getMoviesGenre } from "../../api/Movie";
+import { GenreCard } from "../../components/GenreCard.js/GenreCard";
 
-export const Genres:FC = () => {
+export const GenresPage: FC = () => {
+
+    const genreQuery = useQuery({
+        queryFn: () => getMoviesGenre(),
+        queryKey: ["movie", "genres"],
+        retry: false,
+        refetchOnWindowFocus: false
+    })
+
     return (
         <section className="genres">
             <div className="container">
                 <div className="genres__wrapper">
-                    <h2 className="genres__title">Жанры</h2>
+                    <h2 className="genres__title">Жанры фильмов</h2>
                     <ul className="genres__list">
-                        <li className="genres__item">
-                            
-                        </li>
+                        {genreQuery.data?.map((genre, index) => (
+                            <li className="genres__item" key={index}>
+                                <GenreCard genre={genre} />
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>

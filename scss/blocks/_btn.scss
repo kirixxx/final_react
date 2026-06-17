@@ -1,5 +1,10 @@
 .btn {
-    
+    padding: 8px 0;
+
+    &.active {
+        border-bottom: 2px solid $color-heliotrope;
+    }
+
     &__clear {
         background-color: transparent;
         border: none;
@@ -14,7 +19,7 @@
     &--color-blue {
         background-color: $color-cornflower-blue;
     }
-    
+
     &--color-gray {
         background-color: $color-cape-cod;
     }

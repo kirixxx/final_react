@@ -10,6 +10,10 @@ export const ProfilePage: FC = () => {
 
     const [contentType, setContentType] = useState<profileType>('favorites');
 
+    const isActiveBtn = (btnSet: string) => {
+        return btnSet === contentType ? 'active' : '';
+    }
+    
     const changeContentType = (contentType: profileType) => {
         setContentType(contentType);
     }
@@ -19,11 +23,11 @@ export const ProfilePage: FC = () => {
                 <div className="profile__wrapper">
                     <h2 className="profile__title">Мой аккаунт</h2>
                     <div className="profile__menu">
-                        <Button className="profile__menu-btn" type="button" onClick={() => changeContentType('favorites')}>
+                        <Button className={`btn profile__menu-btn ${isActiveBtn('favorites')}`} type="button" onClick={() => changeContentType('favorites')}>
                             <Svg className="profile__menu-icon" iconId="icon-like" />
                             <span>Избранные фильмы</span>
                         </Button>
-                        <Button className="profile__menu-btn" type="button" onClick={() => changeContentType('settings')}>
+                        <Button className={`btn profile__menu-btn ${isActiveBtn('settings')}`} type="button" onClick={() => changeContentType('settings')}>
                             <Svg className="profile__menu-icon" iconId="icon-user" />
                             <span>Настройка аккаунта</span>
                         </Button>
