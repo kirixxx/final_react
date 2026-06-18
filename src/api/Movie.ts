@@ -121,3 +121,17 @@ export function getGenreMovies(genre: string): Promise<MovieArrayType> {
         .then(response => response.json())
         .then(data => MovieArraySchema.parse(data))
 }
+
+export function getMovies(title: string): Promise<MovieArrayType> {
+    const encodedTitle = encodeURIComponent(title);
+
+    return fetch(`${SERVER}/movie?title=${encodedTitle}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(validateResponse)
+        .then(response => response.json())
+        .then(data => MovieArraySchema.parse(data))
+}

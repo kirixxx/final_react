@@ -6,6 +6,7 @@
 @import "global/fonts";
 @import "global/reboot";
 
+@import "blocks/loader";
 @import "blocks/custom-input";
 @import "blocks/app-layout";
 @import "blocks/header";
@@ -25,5 +26,9 @@
 @import "blocks/genre-card";
 @import "blocks/genre-movie";
 @import "blocks/register-success";
+@import "blocks/loader-genres";
+@import "blocks/loader-movie";
+@import "blocks/loader_gen";
+@import "blocks/trailer-modal";
 
 @import "blocks/btn.scss";

@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type ChangeEventHandler } from "react";
 
 interface InputProps {
     name?: string;
@@ -8,6 +8,8 @@ interface InputProps {
     type?: 'radio' | 'text' | 'number' | 'email' | 'search' | 'password';
     placeholder?: string;
     defaultValue?: string;
+    value?: string;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({
@@ -18,10 +20,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
     ariaLabel,
     placeholder,
     defaultValue,
+    value,
+    onChange,
     ...props
 }, ref) => {
     return (
-        <input 
+        <input
             ref={ref}
             type={type}
             id={id}
@@ -30,7 +34,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
             placeholder={placeholder}
             aria-label={ariaLabel}
             defaultValue={defaultValue}
-            {...props}  
-        />        
+            value={value}
+            onChange={onChange}
+            {...props}
+        />
     );
 });

@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, FC, ReactNode } from "react"
 import { Loader } from "../Loader/Loader"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: ReactNode,
+    children?: ReactNode,
     isLoading?: boolean,
     isDisabled?: boolean,
     kind?: 'primary' | 'secondary',

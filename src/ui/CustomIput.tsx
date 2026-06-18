@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { ChangeEventHandler, FC } from "react";
 import { Input } from "../components/Input/Input";
 import { Svg } from "../components/Svg/Svg";
 import type { FieldError } from "react-hook-form";
@@ -14,6 +14,8 @@ interface CustomInputProps {
     svgHeight?: number,
     placeHolder?: string,
     error?: FieldError;
+    value?: string;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const CustomInput: FC<CustomInputProps> = ({
@@ -27,12 +29,23 @@ export const CustomInput: FC<CustomInputProps> = ({
     svgWidth = 24,
     svgHeight = 24,
     error,
+    value,
+    onChange,
     ...props
 }) => {
     return (
         <div className={`${className} ${error ? 'error' : ''}`}>
             <Svg className={`${className}__icon`} width={svgWidth} height={svgHeight} iconId={svgId} />
-            <Input className={`${className}__field`} type={type} name={name} id={id} placeholder={placeHolder} ariaLabel={ariaLabel} {...props} />
+            <Input className={`${className}__field`}
+                value={value}
+                type={type}
+                name={name}
+                id={id}
+                placeholder={placeHolder}
+                ariaLabel={ariaLabel}
+                {...props}
+                onChange={onChange}
+            />
             {/* {error && <span className={`${className}__error-text`}>{error.message}</span>} */}
         </div>
     )

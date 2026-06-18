@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, type FC } from "react";
 import { getGenreMovies } from "../../api/Movie";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
-import { useLocation, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Button } from "../../components/Button/Button";
 import { Svg } from "../../components/Svg/Svg";
 import { Loader } from "../../components/Loader";
+import { SkeletonLoaderGenres } from "../../components/Loader/SkeletonLoaderGenres";
 
 export const GenreMovie: FC = () => {
     const { genreId } = useParams();
@@ -21,7 +22,7 @@ export const GenreMovie: FC = () => {
 
     switch (genreMoviesQuery.status) {
         case "pending":
-            return <Loader />
+            return <SkeletonLoaderGenres />
         case "error":
             return <span>ошибка загрузки страницы</span>
         case "success":
