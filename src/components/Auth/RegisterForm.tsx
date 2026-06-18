@@ -7,9 +7,6 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { registration } from "../../api/User";
 import { queryClient } from "../../api/queryClient";
-import { useDispatch } from "react-redux";
-import { closeAuthModal } from "../../features/authModal/authModalSlice";
-import { useNavigate } from "react-router";
 
 const registrFormSchema = z.object({
     email: z.string().email("Неверный формат email"),
@@ -26,13 +23,18 @@ type IRegisterType = 'register' | 'successRegister';
 
 type registrFormType = z.infer<typeof registrFormSchema>;
 
-export const RegisterForm: FC = () => {
-    const dispatch = useDispatch();
+interface IRegisterForm {
+    setAuthType: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const RegisterForm: FC<IRegisterForm> = ({
+    setAuthType,
+}) => {
     const { register, handleSubmit, formState: { errors } } = useForm<registrFormType>({
         resolver: zodResolver(registrFormSchema)
     });
     const [registerType, setRegisterType] = useState<IRegisterType>('register');
-    
+
     const registrationMutation = useMutation({
         mutationFn: (data: registrFormType) =>
             registration(data.email, data.password, data.name, data.surname),
@@ -49,18 +51,6 @@ export const RegisterForm: FC = () => {
 
     return (
         registerType === 'register' ?
-            <div className="register-success">
-                <h2 className="register-success__title">Регистрация завершена</h2>
-                <p className="register-success__text">Используйте вашу электронную почту для входа</p>
-                <Button
-                    className="register__btn"
-                    type="button"
-                >
-                    Войти
-                </Button>
-            </div>
-        :
-
             <form className="register__form" onSubmit={handleSubmit((data: registrFormType) => {
                 registrationMutation.mutate(data);
             })}>
@@ -124,6 +114,7 @@ export const RegisterForm: FC = () => {
                 >
                     {registrationMutation.isPending ? "Регистрация..." : "Создать аккаунт"}
                 </Button>
+                <Button className="login__btn btn__clear" type="button" onClick={() => setAuthType('login')}>У меня есть пароль</Button>
 
                 {registrationMutation.isError && (
                     <div className="error-message">
@@ -131,6 +122,11 @@ export const RegisterForm: FC = () => {
                     </div>
                 )}
             </form>
-            
+            :
+            <div className="register-success">
+                <h2 className="register-success__title">Регистрация завершена</h2>
+                <p className="register-success__text">Используйте вашу электронную почту для входа</p>
+                <Button className="login__btn" type="button" onClick={() => setAuthType('login')}>Войти</Button>
+            </div>
     );
 };

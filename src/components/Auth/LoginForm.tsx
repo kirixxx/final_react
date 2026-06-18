@@ -21,8 +21,13 @@ const loginFormSchema = z.object({
 });
 
 type loginFormType = z.infer<typeof loginFormSchema>;
+interface ILoginForm {
+    setAuthType: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export const LoginForm: FC = () => {
+export const LoginForm: FC<ILoginForm> = ({
+    setAuthType,
+}) => {
     const dispathcAuthModal = useDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm<loginFormType>({
@@ -60,6 +65,7 @@ export const LoginForm: FC = () => {
                 />
             </div>
             <Button className="login__btn" type="submit" isLoading={loginMutation.isPending}>Войти</Button>
+            <Button className="login__btn btn__clear" type="button" onClick={() => setAuthType('register')}>Регистрация</Button>
         </form>
     )
 }

@@ -1,4 +1,3 @@
-import { CustomInput } from "../../ui/CustomIput"
 import { Button } from "../Button/Button"
 import { useDispatch, useSelector } from "react-redux";
 import { closeAuthModal, selectAuthModal } from "../../features/authModal/authModalSlice";
@@ -28,8 +27,7 @@ export const AuthModal = () => {
                         <Svg className="login__icon-close" iconId="icon-close-xl" />
                     </div>
                     <img className="login__logo-img" src="/src/assets/images/logoBlack.png" alt="Лого" width={132} height={29} />
-                    {authType === "login" ? <LoginForm /> : <RegisterForm />}
-                    <Button className="login__btn btn__clear" type="button" onClick={changeAuthType}>{authType === 'login' ? "Регистрация" : "У меня есть аккаунт"}</Button>
+                    {authType === "login" ? <LoginForm setAuthType={setAuthType}/> : <RegisterForm setAuthType={setAuthType}/>}
                 </div>
             </div>
         </div>

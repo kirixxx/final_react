@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import type { FC } from "react";
 import { getGenres } from "../../api/Movie";
 import { GenreCard } from "../../components/GenreCard.js/GenreCard";
