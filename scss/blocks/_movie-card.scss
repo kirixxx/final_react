@@ -4,5 +4,9 @@
         object-fit: cover;
         height: 336px;
         border-radius: 16px;
+
+        @include vp-374 {
+            width: 335px;
+        }
     }
 }

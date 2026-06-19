@@ -1,0 +1,22 @@
+.search-modal {
+    position: absolute;
+    right: 0;
+    top: 60px;
+
+    &__wrapper {
+        width: 559px;
+        background-color: $color-cape-cod;   
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    &__list {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+
+}

@@ -6,15 +6,17 @@ interface ISvgProps {
     height?: number;
     className?: string;
     iconId?: string;
+    onClick?: () => void;
 }
 export const Svg: FC<ISvgProps> = ({
     width=24,
     height=24,
     className,
-    iconId
+    iconId,
+    onClick
 }) => {
     return (
-        <svg className={className} width={width} height={height} aria-hidden="true">
+        <svg className={className} width={width} height={height} aria-hidden="true" onClick={onClick}>
             <use xlinkHref={`${sprite}#${iconId}`}></use>
         </svg>
     )

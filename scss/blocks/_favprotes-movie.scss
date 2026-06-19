@@ -31,11 +31,25 @@
         margin: 0;
 
         @include vp-374 {
-            width: 335px;
             grid-auto-flow: column;
-            grid-template-columns: repeat(10, auto);
-            gap: 40px;
             overflow: auto;
+            padding: 80px 20px;
+            margin: -80px -20px;
+            width: 100vw;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+                display: none;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: transparent;
+            }
         }
     }
 
@@ -53,6 +67,11 @@
             .favorites-movie__close {
                 display: flex;
             }
+        }
+
+        @include vp-374 {
+            width: 224px;
+            height: 336px;
         }
     }
 

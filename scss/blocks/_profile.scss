@@ -3,6 +3,10 @@
     
     &__wrapper {
         padding: 64px 0;
+
+        @include vp-374 {
+            padding: 16px 0;
+        }
     }
 
     &__title {
@@ -12,12 +16,28 @@
         line-height: 56px;
         font-weight: 700;
         color: $color-white;
+
+        @include vp-374 {
+            font-size: 24px;
+            line-height: 32px;
+            margin: 0 0 40px;
+        }
     }
 
     &__menu {
         display: flex;
         gap: 64px;
         margin: 0 0 64px;
+
+        @include vp-374 {
+            gap: 24px;
+            margin: 0 0 40px;
+        }
+    }
+
+    &__menu-text {
+        font-size: 24px;
+        line-height: 32px;
     }
 
     &__menu-btn {

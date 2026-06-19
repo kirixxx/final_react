@@ -1,13 +1,18 @@
 import { useEffect, useState, type FC } from "react";
 import { CustomInput } from "../../ui/CustomIput";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getMovies, type MovieArrayType } from "../../api/Movie";
+import { getMovies, type MovieArrayType, type MovieType } from "../../api/Movie";
 import { useDebounce } from "../../hooks/useDebounce";
 import { SearchMoiveCard } from "../SearchMoiveCard/SearchMoiveCard";
 
-export const CustomSearch: FC = () => {
+interface ICustomSearch {
+    limitMovies?: number;
+}
+export const CustomSearch: FC<ICustomSearch> = ({
+    limitMovies = 5,
+}) => {
     const [titleValue, setTitleValue] = useState<string>('');
-    const debouncedValue = useDebounce(titleValue, 500);
+    const debouncedValue = useDebounce(titleValue, 300);
     const [fetchMovies, setFetchMovies] = useState<MovieArrayType>([]);
     const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -32,6 +37,10 @@ export const CustomSearch: FC = () => {
         }
     })
 
+    const closeSearchModal = () => {
+        setShowModal(false);
+        setTitleValue('');
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitleValue(e.target.value);
@@ -51,16 +60,17 @@ export const CustomSearch: FC = () => {
             />
             {showModal && (
                 <div className="search-modal">
-                    <ul className="search-modal__list">
-                        {fetchMovies.map(movie => (
-                            <li className="search-modal__item" key={movie.id}>
-                                <SearchMoiveCard movie={movie} />
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="search-modal__wrapper">
+                        <ul className="search-modal__list">
+                            {fetchMovies.slice(0, limitMovies).map(movie => (
+                                <li className="search-modal__item" key={movie.id}>
+                                    <SearchMoiveCard movie={movie} closeModal={closeSearchModal} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             )}
         </>
-
     )
 }

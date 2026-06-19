@@ -18,4 +18,14 @@
         line-height: 24px;
         font-weight: 700;
     }
+
+    &--size-small {
+        width: 47px;
+        height: 20px;
+
+        .custom-rating__value {
+            font-size: 12px;
+            line-height: 16px;
+        }
+    }
 }

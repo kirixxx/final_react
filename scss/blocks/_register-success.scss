@@ -5,6 +5,11 @@
     justify-content: center;
     font-family: $ff-main-play;
     width: 340px;
+
+    @include vp-374 {
+        width: 295px;
+    }
+    
     &__title {
         font-size: 24px;
         line-height: 32px;

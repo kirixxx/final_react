@@ -40,6 +40,10 @@
         width: 340px;
         gap: 24px;
         margin: 0 0 24px;
+
+        @include vp-374 {
+            width: 295px;
+        }
     }
 
     &__form-legend {

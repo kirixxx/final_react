@@ -31,7 +31,7 @@ export const GenreMovie: FC = () => {
                     <div className="container">
                         <div className="genre-movie__wrapper">
                             <Button className="genre-movie__btn" onClick={() => navigate('/genres')}>
-                                <Svg className="genre-movie__btn-icon" width={40} height={40} iconId="icon-back" />
+                                <Svg className="genre-movie__btn-icon" iconId="icon-back" />
                                 <span className="genre-movie__btn-text">{genreId}</span>
                             </Button>
                             <ul className="genre-movie__list">

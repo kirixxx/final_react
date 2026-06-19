@@ -1,78 +1,33 @@
-import { type FC, useEffect, useRef } from 'react';
-import YouTube from 'react-youtube';
-import { Button } from '../Button/Button';
+import { type FC, useState, useRef } from "react";
+import ReactPlayer from "react-player";
+import { Svg } from "../Svg/Svg";
 
-interface IYouTubePlayer {
+interface YouTubePlayerProps {
   videoId: string;
   title: string;
   onClose: () => void;
 }
 
-export const YouTubePlayer: FC<IYouTubePlayer> = ({ 
-  videoId, 
-  title, 
-  onClose 
-}) => {
-  const playerRef = useRef<any>(null);
+export const YouTubePlayer: FC<YouTubePlayerProps> = ({ videoId, title, onClose }) => {
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  useEffect(() => {
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('keydown', handleEsc);
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.removeEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'unset';
-      if (playerRef.current) {
-        playerRef.current.stopVideo();
-      }
-    };
-  }, [onClose]);
-
-  const opts = {
-    height: '100%',
-    width: '100%',
-    playerVars: {
-      autoplay: 1,
-      modestbranding: 1,
-      rel: 0,
-      showinfo: 0,
-      controls: 1,
-    },
-  };
-
-  const onReady = (event: any) => {
-    playerRef.current = event.target;
-    event.target.playVideo();
-  };
-
-  const onError = (error: any) => {
-    console.error('Ошибка воспроизведения YouTube видео:', error);
-  };
 
   return (
-    <div className="youtube-player">
-      <div className="youtube-player__overlay" onClick={onClose}>
-        <div className="youtube-player__content" onClick={e => e.stopPropagation()}>
-          <Button className="youtube-player__close" onClick={onClose}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M18 6L6 18M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </Button>
-          <div className="youtube-player__wrapper">
-            <YouTube
-              videoId={videoId}
-              opts={opts}
-              onReady={onReady}
-              onError={onError}
-              className="youtube-player__video"
-            />
-          </div>
+    <div className="trailer-modal__overlay" onClick={onClose}>
+      <div className="trailer-modal__content" onClick={(e) => e.stopPropagation()}>
+
+        <button className="trailer-modal__close" onClick={onClose}>
+          <Svg iconId="icon-close" />
+        </button>
+
+        <div className="trailer-modal__video-wrapper">
+          <ReactPlayer
+            src={`https://www.youtube.com/watch?v=${videoId}`}
+            playing={isPlaying}
+            width="100%"
+            height="100%"
+            className="react-player"
+          />
         </div>
       </div>
     </div>

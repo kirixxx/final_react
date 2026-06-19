@@ -8,12 +8,12 @@ interface RatingProps {
 
 const sizeConfig = {
     small: {
-        iconWidth: 16,
-        iconHeight: 16,
-    },
-    large: {
         iconWidth: 10,
         iconHeight: 10,
+    },
+    large: {
+        iconWidth: 16,
+        iconHeight: 16,
     }
 }
 
