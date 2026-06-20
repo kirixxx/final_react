@@ -724,6 +724,13 @@ input[type=search]::-webkit-search-results-decoration {
   .custom-search {
     color: #FFFFFF;
     display: none;
+    position: absolute;
+    left: -268px;
+    top: -2px;
+  }
+  .custom-search.custom-search--mobile-open {
+    display: flex;
+    z-index: 11;
   }
 }
 .custom-search__field {
@@ -771,7 +778,7 @@ input[type=search]::-webkit-search-results-decoration {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .register {
@@ -1901,11 +1908,24 @@ input[type=search]::-webkit-search-results-decoration {
   right: 0;
   top: 60px;
 }
+@media (max-width: 765px) {
+  .search-modal {
+    z-index: 11;
+    right: -45px;
+  }
+}
 .search-modal__wrapper {
   width: 559px;
   background-color: #393B3C;
   padding: 8px;
   border-radius: 8px;
+}
+@media (max-width: 765px) {
+  .search-modal__wrapper {
+    width: 335px;
+    height: 378px;
+    padding: 24px 20px;
+  }
 }
 .search-modal__list {
   list-style-type: none;
@@ -1913,6 +1933,23 @@ input[type=search]::-webkit-search-results-decoration {
   flex-direction: column;
   margin: 0;
   padding: 0;
+}
+@media (max-width: 765px) {
+  .search-modal__list {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
+
+.mobile-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 10;
 }
 
 .search-card {
@@ -1922,11 +1959,26 @@ input[type=search]::-webkit-search-results-decoration {
   align-items: center;
   font-family: "Play", "Arial", sans-serif;
 }
+@media (max-width: 765px) {
+  .search-card {
+    flex-direction: column;
+    width: 220px;
+    height: 330px;
+    padding: 0;
+    align-items: start;
+  }
+}
 .search-card__img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 40px;
   height: 52px;
+}
+@media (max-width: 765px) {
+  .search-card__img {
+    width: 158px;
+    height: 206px;
+  }
 }
 .search-card__info {
   display: flex;
@@ -1944,6 +1996,11 @@ input[type=search]::-webkit-search-results-decoration {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+@media (max-width: 765px) {
+  .search-card__details {
+    flex-wrap: wrap;
+  }
 }
 .search-card__text {
   color: rgba(255, 255, 255, 0.7);

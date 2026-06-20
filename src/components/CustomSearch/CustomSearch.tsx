@@ -7,14 +7,21 @@ import { SearchMoiveCard } from "../SearchMoiveCard/SearchMoiveCard";
 
 interface ICustomSearch {
     limitMovies?: number;
+    isMobileOpen?: boolean;
+    showModal?: boolean;
+    closeShowModal: () => void;
+    openShowModal: () => void;
 }
 export const CustomSearch: FC<ICustomSearch> = ({
     limitMovies = 5,
+    isMobileOpen,
+    closeShowModal,
+    showModal,
+    openShowModal
 }) => {
     const [titleValue, setTitleValue] = useState<string>('');
     const debouncedValue = useDebounce(titleValue, 300);
     const [fetchMovies, setFetchMovies] = useState<MovieArrayType>([]);
-    const [showModal, setShowModal] = useState<boolean>(false);
 
     useEffect(() => {
         if (debouncedValue.trim().length >= 2) {
@@ -23,22 +30,24 @@ export const CustomSearch: FC<ICustomSearch> = ({
         } else if (debouncedValue.trim().length === 0) {
             if (fetchMovies) {
                 setFetchMovies([]);
-                setShowModal(false);
+                closeShowModal();
+                setTitleValue('');
             }
         }
     }, [debouncedValue]);
+
 
     const movieMutation = useMutation({
         mutationFn: (title: string) => getMovies(title),
         onSuccess: (data) => {
             console.log("movieMutation2")
             setFetchMovies(data)
-            setShowModal(true)
+            openShowModal();
         }
     })
 
     const closeSearchModal = () => {
-        setShowModal(false);
+        closeShowModal();
         setTitleValue('');
     }
 
@@ -48,7 +57,7 @@ export const CustomSearch: FC<ICustomSearch> = ({
     return (
         <>
             <CustomInput
-                className="custom-search"
+                className={`${isMobileOpen ? 'custom-search--mobile-open' : ''} custom-search`}
                 type="search"
                 name="search"
                 id="search"

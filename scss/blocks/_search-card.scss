@@ -5,10 +5,24 @@
     align-items: center;
     font-family: $ff-main-play;
 
+
+    @include vp-374 {
+        flex-direction: column;
+        width: 220px;
+        height: 330px;
+        padding: 0;
+        align-items: start;
+    }
+
     &__img {
         object-fit: cover;
         width: 40px;
         height: 52px;
+
+        @include vp-374 {
+            width: 158px;
+            height: 206px;
+        }
     }
 
     &__info {
@@ -29,6 +43,10 @@
         display: flex;
         gap: 12px;
         align-items: center;
+
+        @include vp-374 {
+            flex-wrap: wrap;
+        }
     }
 
     &__text {

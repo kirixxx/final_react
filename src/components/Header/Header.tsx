@@ -18,6 +18,26 @@ export const Header: FC = () => {
     const userData = useSelector(selectUserdata);
     const location = useLocation();
     const navigate = useNavigate();
+    const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+    const [showModal, setShowModal] = useState<boolean>(false);
+
+    const toggleMobileSearch = () => {
+        setIsMobileSearchOpen(!isMobileSearchOpen);
+        console.log('isMobileSearchOpen', isMobileSearchOpen)
+    };
+
+    const closeShowModal = () => {
+        setShowModal(false);
+    }
+
+    const openShowModal = () => {
+        setShowModal(true);
+    }
+
+    const closeMobileSearch = () => {
+        closeShowModal();
+        setIsMobileSearchOpen(false);
+    };
 
     const isActiveBtn = (path: string) => {
         return location.pathname === path;
@@ -52,7 +72,7 @@ export const Header: FC = () => {
                 return (
                     <>
                         <Button className="header__btn" type="button" onClick={() => dispatch(openAuthModal())}>Войти</Button>
-                        <Svg className="header__nav-icon" iconId="icon-user" onClick={() => dispatch(openAuthModal())}/>
+                        <Svg className="header__nav-icon" iconId="icon-user" onClick={() => dispatch(openAuthModal())} />
                     </>
                 )
             case "success":
@@ -61,7 +81,7 @@ export const Header: FC = () => {
                         <Button className={`btn header__btn ${isActiveBtn(`/profile/${userData.name}`) ? 'active' : ''}`} type="button">
                             <Link to={`/profile/${userData.name}`}>{userData.name}</Link>
                         </Button>
-                        <Svg className="header__nav-icon" iconId="icon-user" onClick={() => navigate(`/profile/${userData.name}`)}/>
+                        <Svg className="header__nav-icon" iconId="icon-user" onClick={() => navigate(`/profile/${userData.name}`)} />
                     </>
                 )
         }
@@ -82,18 +102,21 @@ export const Header: FC = () => {
                                 <Link className={`btn header__nav-link ${isActiveBtn('/') ? 'active' : ''}`} to={"/"}>Главная</Link>
                             </li>
                             <li className="header__nav-item">
-                                <Svg className="header__nav-icon" iconId="icon-genres" onClick={() => navigate('/genres')}/>
+                                <Svg className="header__nav-icon" iconId="icon-genres" onClick={() => navigate('/genres')} />
                                 <Link className={`btn header__nav-link ${isActiveBtn('/genres') ? 'active' : ''}`} to={"/genres"}>Жанры</Link>
                             </li>
                         </ul>
                         <div className="header__search">
-                            <CustomSearch />
-                            <Svg className="header__nav-icon" iconId="icon-search" />
+                            <CustomSearch isMobileOpen={isMobileSearchOpen} openShowModal={openShowModal} closeShowModal={closeShowModal} showModal={showModal} />
+                            <Svg className="header__nav-icon" iconId="icon-search" onClick={toggleMobileSearch} />
                         </div>
                         {renderAuthButton()}
                     </div>
                 </div>
             </div>
+            {isMobileSearchOpen && (
+                <div className="mobile-search-overlay" onClick={closeMobileSearch}></div>
+            )}
         </header>
     )
 }

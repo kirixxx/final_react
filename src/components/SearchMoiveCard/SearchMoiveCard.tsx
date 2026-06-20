@@ -31,7 +31,7 @@ export const SearchMoiveCard: FC<ISearchMoiveCard> = ({
                 <div className="search-card__details">
                     <Rating size="small" ratingValue={movie.tmdbRating?.toFixed(1)} />
                     <p className="search-card__text">{movie.releaseYear}</p>
-                    <p className="search-card__text">{movie.genres}</p>
+                    <p className="search-card__text">{movie.genres[0]}</p>
                     <p className="search-card__text">{formatRuntime(movie.runtime)}</p>
                 </div>
                 <h2 className="search-card__title">{movie.originalTitle}</h2>

@@ -4,9 +4,14 @@
     @include vp-374 {
         color: $color-white;
         display: none;
-        // position: absolute;
-        // left: -268px;
-        // top: -2px;
+        position: absolute;
+        left: -268px;
+        top: -2px;
+
+        &.custom-search--mobile-open {
+            display: flex;
+            z-index: 11;
+        }
     }
 
     &__field {
@@ -57,5 +62,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 10;
 }
