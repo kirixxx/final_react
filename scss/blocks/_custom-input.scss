@@ -1,0 +1,54 @@
+.custom-input {
+    position: relative;
+
+
+    &__field {
+        border-radius: 12px;
+        background-color: $color-white;
+        padding: 16px 16px 16px 52px;
+        border: 1px solid $color-black-opacity-4;
+        color: $color-black;
+        font-size: 18px;
+        line-height: 24px;
+        width: 100%;
+        
+        &::placeholder {
+            color: $color-black-opacity-4;
+        }
+
+        &:focus-visible {
+            outline: none;
+            
+        }
+    }
+
+    &.error {
+        .custom-input__field {
+            border-color: $color-bittersweet;
+        }
+
+        .custom-input__icon {
+            color: $color-bittersweet;
+        }
+    }
+
+    &__icon {
+        color: $color-black-opacity-4;
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    // @media (prefers-color-scheme: dark) {
+    //     &__field {
+    //         background-color: $color-cape-cod;
+    //         color: $color-white;
+    //     }
+
+    //     &__icon {
+    //         color: #666666;
+    //     }
+    // }
+}

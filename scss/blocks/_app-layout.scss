@@ -1,0 +1,8 @@
+.app-layout {
+    background: $bg-main;
+    background-blend-mode: normal;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}

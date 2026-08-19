@@ -1,0 +1,58 @@
+.search-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px 8px;
+    align-items: center;
+    font-family: $ff-main-play;
+
+
+    @include vp-374 {
+        flex-direction: column;
+        width: 220px;
+        height: 330px;
+        padding: 0;
+        align-items: start;
+    }
+
+    &__img {
+        object-fit: cover;
+        width: 40px;
+        height: 52px;
+
+        @include vp-374 {
+            width: 158px;
+            height: 206px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__title {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 700;
+        color: $color-white;
+        margin: 0;
+    }
+
+    &__details {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+
+        @include vp-374 {
+            flex-wrap: wrap;
+        }
+    }
+
+    &__text {
+        color: $color-white-opacity-7;
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0;
+    }
+}

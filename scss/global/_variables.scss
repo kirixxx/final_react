@@ -1,16 +1,23 @@
 /* Fonts */
 /* ------------------------------------ */
-$ff-main: "Noto Sans", "Arial", sans-serif;
+$ff-main-noto: "Noto Sans", "Arial", sans-serif;
+$ff-main-play: "Play", "Arial", sans-serif;
 
 /* Colors */
 /* ------------------------------------ */
 $color-white: #FFFFFF;
-$color-white-2: rgba(255, 255, 255, 0.7);
+$color-white-opacity-7: rgba(255, 255, 255, 0.7);
+$color-white-opacity-8: rgba(255, 255, 255, 0.8);
+$color-white-opacity-5: rgba(255, 255, 255, 0.5);
+$color-white-opacity-3: rgba(255, 255, 255, 0.33);
+$color-white-opacity-2: rgba(255, 255, 255, 0.25);
 $color-black: #000000;
+$color-black-opacity-4: rgba(0, 0, 0, 0.4);
 $color-black-2: rgba(0, 0, 0, 0.4);
 $color-forest-green: #308E21;
 $color-cape-cod: #393B3C;
 $color-mine-shaft: #333333;
+$color-mine-shaft-2 :#3C3C3C;
 $color-cornflower-blue: #67A5EB;
 $color-blue-marguerite: #6A5DC2;
 $color-heliotrope: #DC5DFC;
@@ -20,7 +27,13 @@ $color-fiord: #45526E;
 $color-pirate-gold: #A59400;
 $color-gray: #777777;
 $color-thunderbird: #C82020;
+$color-dav-gray: #616161;
+
+$bg-main: linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%),
+    linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
 
 /* Shadows */
 /* ------------------------------------ */
-$shadow-home-card: 0px 0px 80px 0px;
+$shadow-home-card: rgba(255, 255, 255, 0.33) 0px 0px 80px 0px ;
+
+$vp-mobile: 765px;

@@ -1,0 +1,36 @@
+@import "global/variables";
+@import "global/mixins";
+@import "global/normalize";
+@import "global/visually-hidden";
+@import "global/container";
+@import "global/fonts";
+@import "global/reboot";
+
+@import "blocks/loader";
+@import "blocks/custom-input";
+@import "blocks/app-layout";
+@import "blocks/header";
+@import "blocks/footer";
+@import "blocks/login";
+@import "blocks/custom-search";
+@import "blocks/register";
+@import "blocks/top-movie";
+@import "blocks/featured-movie";
+@import "blocks/custom-rating";
+@import "blocks/profile";
+@import "blocks/profile-settings";
+@import "blocks/favprotes-movie";
+@import "blocks/movie-card";
+@import "blocks/about-movie";
+@import "blocks/genres";
+@import "blocks/genre-card";
+@import "blocks/genre-movie";
+@import "blocks/register-success";
+@import "blocks/loader-genres";
+@import "blocks/loader-movie";
+@import "blocks/loader_gen";
+@import "blocks/trailer-modal";
+@import "blocks/search-modal";
+@import "blocks/search-card";
+
+@import "blocks/btn.scss";

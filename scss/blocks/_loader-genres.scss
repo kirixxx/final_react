@@ -1,0 +1,49 @@
+.loader-genre {
+    padding: 64px 0;
+    font-family: $ff-main-play;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__btn {
+        height: 56px;
+        width: 332px;
+
+        border: none;
+        padding: 0;
+        margin: 0 0 64px;
+        border-radius: 8px;
+    }
+
+    &__btn-load {
+        display: block;
+        padding: 16px 48px;
+        border-radius: 28px;
+        background-color: $color-cornflower-blue;
+        color: $color-white;
+        border: none;
+        font-size: 18px;
+        line-height: 24px;
+        cursor: pointer;
+        font-family: $ff-main-play;
+        width: 218px;
+        align-self: center;
+    }
+
+    &__list {
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 64px 40px;
+        margin: 0 0 64px;
+        padding: 0;
+    }
+
+    &__item {
+        width: 224px;
+        height: 336px;
+        border-radius: 16px;
+    }
+}

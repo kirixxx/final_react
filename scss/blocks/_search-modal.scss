@@ -1,0 +1,49 @@
+.search-modal {
+    position: absolute;
+    right: 0;
+    top: 60px;
+
+    @include vp-374 {
+        z-index: 11;
+        right: -45px;
+    }
+
+    &__wrapper {
+        width: 559px;
+        background-color: $color-cape-cod;
+        padding: 8px;
+        border-radius: 8px;
+
+        @include vp-374 {
+            width: 335px;
+            height: 378px;
+            padding: 24px 20px;
+        }
+    }
+
+    &__list {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+
+        @include vp-374 {
+            flex-direction: row;
+            overflow-x: auto;
+        }
+    }
+
+
+}
+
+.mobile-search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}

@@ -1,0 +1,94 @@
+.top-movie {
+    &__wrapper {
+        padding: 40px 0 120px;
+
+        @include vp-374 {
+            padding: 32px 0;
+
+        }
+    }
+
+    &__title {
+        padding: 0;
+        font-size: 40px;
+        line-height: 48px;
+        font-weight: 700;
+        color: $color-white;
+        margin: 0 0 64px;
+
+        @include vp-374 {
+            margin: 0 0 40px;
+        }
+    }
+
+
+    &__list {
+        display: grid;
+        list-style-type: none;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 64px 40px;
+        counter-reset: section;
+        padding: 0;
+        margin: 0;
+
+        @include vp-374 {
+            padding: 80px 20px;
+            margin: -80px -20px;
+            width: 100vw;
+            grid-auto-flow: column;
+            grid-template-columns: repeat(10, auto);
+            gap: 40px;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+                display: none;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: transparent;
+            }
+        }
+    }
+
+    &__item {
+        border-radius: 16px;
+        box-shadow: $shadow-home-card;
+        width: 224px;
+        height: 336px;
+        position: relative;
+        background-color: $color-mine-shaft-2;
+
+        &::before {
+            counter-increment: section;
+            content: counter(section);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            width: 62px;
+            height: 48px;
+            background-color: $color-white;
+            color: $color-blue-marguerite;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+            top: -12px;
+            left: -12px;
+            border-radius: 50px;
+        }
+    }
+
+    &__img {
+        object-fit: cover;
+        height: 336px;
+        border-radius: 16px;
+    }
+
+
+}

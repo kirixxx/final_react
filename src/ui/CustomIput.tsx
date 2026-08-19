@@ -1,31 +1,52 @@
-import type { FC } from "react";
+import type { ChangeEventHandler, FC } from "react";
 import { Input } from "../components/Input/Input";
+import { Svg } from "../components/Svg/Svg";
+import type { FieldError } from "react-hook-form";
 
 interface CustomInputProps {
-    type?: 'radio' | 'text' | 'number' | 'email';
+    className?: string;
+    type?: 'radio' | 'text' | 'number' | 'email' | 'search' | 'password';
     name?: string;
     ariaLabel?: string;
     id?: string;
     svgId?: string;
     svgWidth?: number,
-    svgHeight?: number
+    svgHeight?: number,
+    placeHolder?: string,
+    error?: FieldError;
+    value?: string;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const CustomInput: FC<CustomInputProps> = ({
+    className = 'custom-input',
     type,
     name,
     ariaLabel,
     id,
     svgId,
-    svgWidth,
-    svgHeight
+    placeHolder,
+    svgWidth = 24,
+    svgHeight = 24,
+    error,
+    value,
+    onChange,
+    ...props
 }) => {
     return (
-        <div className="custom-input">
-            <svg className="custom-input__icon" width={svgWidth} height={svgHeight} aria-hidden="true">
-                <use xlinkHref={`assets/sprive.svg#${svgId}`}></use>
-            </svg>
-            <Input className="custom-input__field" type={type} name={name} id={id} ariaLabel={ariaLabel} />
+        <div className={`${className} ${error ? 'error' : ''}`}>
+            <Svg className={`${className}__icon`} width={svgWidth} height={svgHeight} iconId={svgId} />
+            <Input className={`${className}__field`}
+                value={value}
+                type={type}
+                name={name}
+                id={id}
+                placeholder={placeHolder}
+                ariaLabel={ariaLabel}
+                {...props}
+                onChange={onChange}
+            />
+            {/* {error && <span className={`${className}__error-text`}>{error.message}</span>} */}
         </div>
     )
 }

@@ -1,0 +1,146 @@
+.loader-movie {
+    &__wrapper {
+        display: flex;
+        padding: 32px 0 0;
+
+        @include vp-374 {
+            flex-direction: column-reverse;
+            padding: 0;
+        }
+    }
+
+    &__description {
+        display: flex;
+        padding: 0 15px 0 0;
+        flex-direction: column;
+        gap: 16px;
+        font-family: $ff-main-play;
+        justify-content: center;
+        max-width: 600px;
+
+        @include vp-374 {
+            gap: 12px;
+        }
+    }
+
+    &__rating {
+        width: 70px;
+        height: 32px;
+        border-radius: 24px;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 60px;
+
+        @include vp-374 {
+            gap: 32px;
+            padding: 24px 0;
+        }
+    }
+
+    &__details {
+        flex-direction: row;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+
+        &-text {
+            width: 78px;
+            height: 24px;
+            border-radius: 8px;
+            font-size: 18px;
+            line-height: 24px;
+            color: $color-white-opacity-7;
+
+            @include vp-374 {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+
+    &__title {
+        width: 570px;
+        height: 70px;
+        border-radius: 16px;
+        font-size: 48px;
+        line-height: 56px;
+        color: $color-white;
+        font-weight: 700;
+        margin: 0;
+
+        @include vp-374 {
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+
+    &__text {
+        font-size: 24px;
+        line-height: 32px;
+        width: 400px;
+        height: 54px;
+        border-radius: 16px;
+        color: $color-white-opacity-7;
+        margin: 0;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // max-height: 300px;
+
+        @include vp-374 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+
+    &__trailer {
+        width: 680px;
+        height: 552px;
+        border-radius: 16px;
+
+        @include vp-374 {
+            width: 338px;
+            height: 234px;
+        }
+
+        &-backimg {
+            height: 552px;
+            border-radius: 16px;
+            object-fit: cover;
+
+            @include vp-374 {
+                height: 234px;
+            }
+        }
+    }
+
+    &__actions {
+        display: grid;
+        width: 538px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+
+        &.size--small {
+            grid-template-columns: 171px 68px;
+        }
+        
+        @include vp-374 {
+            grid-template-columns: 167px 68px 68px;
+
+            .movie-btn--size-xl {
+                grid-column: 1/4;
+            }
+        }
+    }
+
+
+    &__btn {
+        border-radius: 28px;
+        width: 121px;
+        height: 56px;
+        border: none;
+    }
+}

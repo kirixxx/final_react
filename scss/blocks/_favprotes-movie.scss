@@ -1,0 +1,99 @@
+.favorites-movie {
+    &__wrapper {
+        padding: 40px 0 120px;
+
+        @include vp-374 {
+            padding: 32px 0;
+
+        }
+    }
+
+    &__title {
+        padding: 0;
+        font-size: 40px;
+        line-height: 48px;
+        font-weight: 700;
+        color: $color-white;
+        margin: 0 0 64px;
+
+        @include vp-374 {
+            margin: 0 0 40px;
+        }
+    }
+
+    &__list {
+        display: grid;
+        list-style-type: none;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 64px 40px;
+        counter-reset: section;
+        padding: 0;
+        margin: 0;
+
+        @include vp-374 {
+            grid-auto-flow: column;
+            overflow: auto;
+            padding: 80px 20px;
+            margin: -80px -20px;
+            width: 100vw;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+                display: none;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: transparent;
+            }
+        }
+    }
+
+    &__item {
+        border-radius: 16px;
+        box-shadow: $shadow-home-card;
+        position: relative;
+        background-color: $color-mine-shaft-2;
+        border: 1px solid $color-white-opacity-3;
+        position: relative;
+
+        &:hover {
+            border-color: $color-white;
+
+            .favorites-movie__close {
+                display: flex;
+            }
+        }
+
+        @include vp-374 {
+            width: 224px;
+            height: 336px;
+        }
+    }
+
+    &__close {
+        width: 40px;
+        height: 40px;
+        background-color: $color-white;
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__img {
+        object-fit: cover;
+        height: 336px;
+        border-radius: 16px;
+    }
+
+
+}
